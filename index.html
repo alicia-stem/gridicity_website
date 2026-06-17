@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gridicity – Intelligent EV Charging Optimisation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;700&family=Poppins:ital,wght@0,400;0,600;0,700;0,800;1,600&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── Tokens ─── */
+    :root {
+      --bg:           #f5fbf7;
+      --surface:      #ffffff;
+      --fg:           #0e1c17;
+      --fg-55:        rgba(14,28,23,0.55);
+      --fg-30:        rgba(14,28,23,0.30);
+      --fg-08:        rgba(14,28,23,0.08);
+      --fg-10:        rgba(0,0,0,0.10);
+      --green:        #116c4a;
+      --green-hover:  #0d5438;
+      --dark:         #0e1c17;
+      --dark-hover:   #1a2e24;
+      --border:       rgba(0,0,0,0.08);
+      --border-10:    rgba(0,0,0,0.10);
+      --shadow-sm:    0 1px 3px rgba(0,0,0,0.12);
+      --shadow-md:    0 4px 10px rgba(0,0,0,0.12);
+      --r-card:       16px;
+      --r-btn:        12px;
+    }
+
+    /* ─── Reset ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3, h4 {
+      font-family: 'Poppins', system-ui, sans-serif;
+      line-height: 1.15;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+
+    /* ─── Layout ─── */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+    .container--narrow { max-width: 600px; margin: 0 auto; padding: 0 1.5rem; }
+    .section { padding: 5rem 0; }
+
+    /* ─── Buttons ─── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700; font-size: 0.875rem;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 0.875rem 1.75rem;
+      border-radius: var(--r-btn);
+      border: none; cursor: pointer;
+      transition: background 0.15s, box-shadow 0.15s, transform 0.1s;
+      white-space: nowrap;
+    }
+    .btn--green {
+      background: var(--green); color: #fff;
+    }
+    .btn--green:hover { background: var(--green-hover); }
+    .btn--dark {
+      background: var(--dark); color: #fff;
+    }
+    .btn--dark:hover { background: var(--dark-hover); }
+    .btn--outline {
+      background: transparent;
+      color: var(--green);
+      border: 1.5px solid var(--border-10);
+      font-family: 'DM Sans', sans-serif;
+      text-transform: none; letter-spacing: normal;
+      font-weight: 600; font-size: 0.9375rem;
+    }
+    .btn--outline:hover { border-color: rgba(17,108,74,0.4); color: var(--fg); }
+    .btn--lg { padding: 1rem 2rem; font-size: 0.9375rem; }
+
+    /* ─── Navbar ─── */
+    .nav {
+      position: fixed; inset: 0 0 auto 0; z-index: 100;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav__inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 4.5rem; max-width: 1100px; margin: 0 auto; padding: 0 2rem;
+    }
+    .nav__brand { display: flex; align-items: center; gap: 0.75rem; }
+    .nav__brand-name {
+      font-family: 'Poppins', sans-serif; font-weight: 400;
+      font-size: 1.125rem; color: var(--green); letter-spacing: 0.12em;
+    }
+    .nav__brand-product {
+      font-family: 'Poppins', sans-serif; font-weight: 700;
+      font-size: 1rem; color: var(--fg); line-height: 1.2;
+    }
+    .nav__links {
+      display: flex; align-items: center; gap: 2rem; list-style: none;
+    }
+    .nav__links a {
+      font-size: 0.9375rem; font-weight: 500; color: var(--fg-55);
+      transition: color 0.15s;
+    }
+    .nav__links a:hover { color: var(--fg); }
+    .nav__hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .nav__hamburger span { display: block; width: 22px; height: 2px; background: var(--fg); border-radius: 2px; }
+
+    /* ─── Hero ─── */
+    .hero {
+      padding: 7rem 2rem 4rem;
+    }
+    .hero__inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 3rem; align-items: center;
+    }
+    .hero__eyebrow {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--green);
+      background: rgba(17,108,74,0.06);
+      border: 1px solid rgba(17,108,74,0.15);
+      padding: 0.35rem 1rem; border-radius: 9999px;
+      margin-bottom: 1.5rem;
+    }
+    .hero__title {
+      font-size: clamp(2rem, 4vw, 3.25rem);
+      font-weight: 600; color: var(--fg);
+      letter-spacing: -0.02em; margin-bottom: 1.25rem;
+    }
+    .hero__title em { font-style: normal; color: var(--green); }
+    .hero__sub {
+      font-size: 1.0625rem; color: var(--fg-55);
+      margin-bottom: 2.25rem; line-height: 1.7;
+    }
+    .hero__actions {
+      display: flex; gap: 0.75rem; flex-wrap: wrap;
+    }
+    .hero__stats {
+      display: flex; gap: 1px;
+      margin-top: 3rem;
+      background: var(--border-10);
+      border: 1px solid var(--border-10);
+      border-radius: var(--r-card);
+      overflow: hidden;
+    }
+    .hero__stat {
+      flex: 1; background: var(--surface); padding: 1.25rem 1rem; text-align: center;
+    }
+    .hero__stat:not(:last-child) { border-right: 1px solid var(--border-10); }
+    .hero__stat-number {
+      font-family: 'JetBrains Mono', monospace; font-weight: 700;
+      font-size: 1.75rem; color: var(--green); letter-spacing: -0.02em;
+    }
+    .hero__stat-label {
+      font-size: 0.75rem; color: var(--fg-30); margin-top: 0.2rem;
+    }
+    .hero__image {
+      position: relative;
+    }
+    .hero__image img {
+      width: 100%; border-radius: var(--r-card);
+      filter: drop-shadow(0 8px 24px rgba(0,0,0,0.10));
+    }
+    /* Dashboard screenshot section */
+    .dashboard-section {
+      background: var(--surface);
+      padding: 4rem 2rem;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .dashboard-section__inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1.6fr;
+      gap: 4rem; align-items: center;
+    }
+    .dashboard-section h2 {
+      font-size: clamp(1.625rem, 3vw, 2.25rem);
+      color: var(--fg); letter-spacing: -0.02em; margin-bottom: 1rem;
+    }
+    .dashboard-section p {
+      font-size: 1rem; color: var(--fg-55); line-height: 1.7; margin-bottom: 1.5rem;
+    }
+    .dashboard-section__eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--green); margin-bottom: 0.75rem;
+    }
+    .dashboard-section__img {
+      border-radius: var(--r-card);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+    }
+    .dashboard-section__img img { width: 100%; display: block; }
+
+    /* ─── Section title ─── */
+    .section-title { text-align: center; margin-bottom: 3rem; }
+    .section-title__eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--green); margin-bottom: 0.75rem;
+    }
+    .section-title h2 {
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem); color: var(--fg);
+      letter-spacing: -0.02em;
+    }
+    .section-title p {
+      margin-top: 0.875rem; font-size: 1.0625rem; color: var(--fg-55);
+      max-width: 520px; margin-left: auto; margin-right: auto; line-height: 1.7;
+    }
+
+    /* ─── Feature cards ─── */
+    .features-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.25rem;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-card);
+      padding: 2rem;
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+    .card__icon {
+      width: 2.75rem; height: 2.75rem;
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.25rem; margin-bottom: 1.25rem;
+    }
+    .card h3 {
+      font-size: 1.0625rem; font-weight: 600; color: var(--fg); margin-bottom: 0.625rem;
+    }
+    .card p { font-size: 0.9375rem; color: var(--fg-55); line-height: 1.7; }
+
+    /* ─── How it works (dark panel) ─── */
+    .dark-panel {
+      background: linear-gradient(135deg, #1b4332 0%, #012d1d 100%);
+      padding: 5rem 1.5rem;
+    }
+    .dark-panel .section-title__eyebrow { color: rgba(161,244,200,0.8); }
+    .dark-panel .section-title h2 { color: #fff; }
+    .dark-panel .section-title p { color: rgba(255,255,255,0.55); }
+    .steps {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.25rem;
+      counter-reset: step;
+    }
+    .step {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: var(--r-card); padding: 1.75rem;
+      counter-increment: step;
+    }
+    .step__num {
+      font-family: 'JetBrains Mono', monospace; font-weight: 700;
+      font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(161,244,200,0.6); margin-bottom: 0.875rem;
+    }
+    .step h3 { font-size: 1rem; font-weight: 600; color: #fff; margin-bottom: 0.5rem; }
+    .step p  { font-size: 0.875rem; color: rgba(255,255,255,0.55); line-height: 1.7; }
+
+    /* ─── Benefits ─── */
+    .bento {
+      display: grid; grid-template-columns: repeat(6, 1fr); gap: 1.25rem;
+    }
+    .bento .card { padding: 1.75rem; }
+    .bento .card--large  { grid-column: span 4; }
+    .bento .card--medium { grid-column: span 2; }
+    .bento .card--wide   { grid-column: span 3; }
+    .bento .card--dark {
+      background: linear-gradient(135deg, #116c4a 0%, #1b4332 100%);
+      border-color: transparent; color: #fff;
+    }
+    .bento .card--dark h3  { color: rgba(161,244,200,0.9); }
+    .bento .card--dark p   { color: rgba(255,255,255,0.65); }
+    .bento .card--dark:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.18); }
+    .stat-number {
+      font-family: 'JetBrains Mono', monospace; font-weight: 700;
+      font-size: 2.75rem; color: var(--green); letter-spacing: -0.03em;
+      line-height: 1; margin-bottom: 0.5rem;
+    }
+    .card--dark .stat-number { color: #a1f4c8; }
+
+    /* ─── Stakeholders ─── */
+    .stakeholders { background: var(--surface); }
+    .stakeholder-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem;
+    }
+    .tag-list { display: flex; flex-wrap: wrap; gap: 0.375rem; margin-top: 1rem; }
+    .tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.05em;
+      text-transform: uppercase; padding: 0.25rem 0.625rem;
+      border-radius: 9999px; background: var(--bg);
+      border: 1px solid var(--border-10); color: var(--green);
+    }
+
+    /* ─── CTA banner ─── */
+    .cta-banner {
+      background: linear-gradient(135deg, #116c4a 0%, #1b4332 100%);
+      border-radius: var(--r-card); padding: 4rem 2rem; text-align: center;
+    }
+    .cta-banner h2 { font-size: clamp(1.625rem, 3.5vw, 2.25rem); color: #fff; margin-bottom: 0.875rem; }
+    .cta-banner p  { font-size: 1.0625rem; color: rgba(255,255,255,0.65); max-width: 480px; margin: 0 auto 2rem; }
+    .btn--cta-white {
+      background: #fff; color: var(--dark);
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700; font-size: 0.875rem;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 0.875rem 2rem; border-radius: var(--r-btn);
+      border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 0.5rem;
+      transition: background 0.15s, transform 0.1s;
+    }
+    .btn--cta-white:hover { background: #f0fdf4; }
+
+    /* ─── Hero image ─── */
+    .hero__img-wrap {
+      max-width: 120px; margin: 2.5rem auto 0;
+      filter: invert(35%) sepia(60%) saturate(500%) hue-rotate(110deg) brightness(85%);
+      opacity: 0.35;
+    }
+
+    /* ─── CTA with photo ─── */
+    .cta-inner {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0; align-items: stretch;
+      border-radius: var(--r-card); overflow: hidden;
+    }
+    .cta-inner__text {
+      background: linear-gradient(135deg, #116c4a 0%, #1b4332 100%);
+      padding: 3.5rem 2.5rem; display: flex; flex-direction: column; justify-content: center;
+    }
+    .cta-inner__text h2 { font-size: clamp(1.5rem, 3vw, 2rem); color: #fff; margin-bottom: 0.875rem; }
+    .cta-inner__text p  { font-size: 1rem; color: rgba(255,255,255,0.65); margin-bottom: 2rem; line-height: 1.7; }
+    .cta-inner__photo { position: relative; min-height: 280px; }
+    .cta-inner__photo img {
+      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top;
+    }
+    @media (max-width: 680px) {
+      .cta-inner { grid-template-columns: 1fr; }
+      .cta-inner__photo { min-height: 200px; }
+    }
+
+    /* ─── Footer ─── */
+    .footer { background: var(--dark); color: rgba(255,255,255,0.6); padding: 3rem 2rem 2rem; }
+    .footer__inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem;
+    }
+    .footer__brand-name {
+      font-family: 'Poppins', sans-serif; font-weight: 400;
+      font-size: 1.0625rem; color: #a1f4c8; letter-spacing: 0.12em; margin-bottom: 0.25rem;
+    }
+    .footer__brand-product {
+      font-family: 'Poppins', sans-serif; font-weight: 700;
+      font-size: 1.25rem; color: #fff; margin-bottom: 0.875rem;
+    }
+    .footer__tagline { font-size: 0.875rem; line-height: 1.6; }
+    .footer__col h4 {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.6875rem;
+      font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      color: #fff; margin-bottom: 1rem;
+    }
+    .footer__col ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    .footer__col a { font-size: 0.875rem; color: rgba(255,255,255,0.5); transition: color 0.15s; }
+    .footer__col a:hover { color: #a1f4c8; }
+    .footer__bottom {
+      max-width: 1100px; margin: 2.5rem auto 0;
+      padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.10);
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.8125rem; gap: 1rem; flex-wrap: wrap;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* ─── Mobile ─── */
+    @media (max-width: 900px) {
+      .hero__inner { grid-template-columns: 1fr; }
+      .hero__image { display: none; }
+      .hero__title { font-size: clamp(2rem, 6vw, 2.75rem); }
+      .dashboard-section__inner { grid-template-columns: 1fr; }
+      .dashboard-section__img { order: -1; }
+    }
+    @media (max-width: 768px) {
+      .nav__links, .nav__cta { display: none; }
+      .nav__hamburger { display: flex; }
+      .hero__stats { flex-direction: column; gap: 0; }
+      .hero__stat:not(:last-child) { border-right: none; border-bottom: 1px solid var(--border-10); }
+      .bento { grid-template-columns: 1fr; }
+      .bento .card--large, .bento .card--medium, .bento .card--wide { grid-column: span 1; }
+      .footer__inner { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 480px) {
+      .hero { padding: 6rem 1rem 3rem; }
+      .footer__inner { grid-template-columns: 1fr; gap: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="nav" role="banner">
+    <div class="nav__inner">
+      <a href="#" class="nav__brand">
+        <img src="gridicity-logo.png" alt="Gridicity logo" style="width:2.5rem;height:2.5rem;object-fit:contain;" />
+        <div>
+          <div class="nav__brand-name">Gridicity</div>
+        </div>
+      </a>
+      <nav aria-label="Main navigation">
+        <ul class="nav__links">
+          <li><a href="#features">Features</a></li>
+          <li><a href="#how-it-works">How it works</a></li>
+          <li><a href="#benefits">Benefits</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <a href="#contact" class="btn btn--dark nav__cta">Get a free consultation</a>
+      <button class="nav__hamburger" aria-label="Open menu" onclick="toggleMobileNav()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+
+  <!-- HERO -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero__inner">
+      <div class="hero__text">
+        <div class="hero__eyebrow">AI-Powered EV Charging</div>
+        <h1 class="hero__title" id="hero-title">
+          Save 40% on your energy bill with <em>intelligent</em> EV charging
+        </h1>
+        <p class="hero__sub">
+          Fleets and charge point operators use Gridicity's AI solutions to optimise electric vehicle charging schedules — reducing costs, preventing grid overload, and unlocking new revenue.
+        </p>
+        <div class="hero__actions">
+          <a href="#contact" class="btn btn--dark btn--lg">Get a free consultation</a>
+          <a href="#how-it-works" class="btn btn--outline btn--lg">See how it works →</a>
+        </div>
+        <div class="hero__stats" aria-label="Key statistics">
+          <div class="hero__stat">
+            <div class="hero__stat-number">40%</div>
+            <div class="hero__stat-label">Average energy cost reduction</div>
+          </div>
+          <div class="hero__stat">
+            <div class="hero__stat-number">Days</div>
+            <div class="hero__stat-label">Typical time to deploy</div>
+          </div>
+          <div class="hero__stat">
+            <div class="hero__stat-number">24/7</div>
+            <div class="hero__stat-label">Real-time monitoring</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero__image">
+        <img src="images/hero-ev-fleet.jpg" alt="Fleet of electric vehicles charging at a logistics centre with solar panels and wind turbines" />
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FEATURES -->
+  <section class="section" id="features" aria-labelledby="features-title">
+    <div class="container">
+      <div class="section-title">
+        <p class="section-title__eyebrow">Core capabilities</p>
+        <h2 id="features-title">Smarter charging, automatically</h2>
+        <p>Gridicity continuously analyses energy markets, grid conditions, and your fleet's schedule to find the cheapest, most efficient charging windows.</p>
+      </div>
+      <div class="features-grid">
+        <div class="card">
+          <div class="card__icon">⚡</div>
+          <h3>Variable Tariff Optimisation</h3>
+          <p>Energy prices fluctuate throughout the day, week, and season. Gridicity monitors supply, demand, and real-time pricing to automatically schedule charging during the lowest-cost windows — without compromising fleet availability.</p>
+        </div>
+        <div class="card">
+          <div class="card__icon">⚖️</div>
+          <h3>Dynamic Load Management</h3>
+          <p>Distribute a limited energy supply intelligently across multiple EV chargers on a single site. Gridicity prevents costly capacity overages and demand-charge penalties by balancing load in real time.</p>
+        </div>
+        <div class="card">
+          <div class="card__icon">🔋</div>
+          <h3>Grid Capacity Services</h3>
+          <p>When the grid is strained, Gridicity can pause charging and sell that demand flexibility back to the grid — generating revenue while helping balance the network. Your fleet always maintains minimum required charge.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- DASHBOARD SCREENSHOT -->
+  <div class="dashboard-section">
+    <div class="dashboard-section__inner">
+      <div>
+        <p class="dashboard-section__eyebrow">Real product</p>
+        <h2>Full visibility, zero guesswork</h2>
+        <p>The Gridicity dashboard gives you a live view of every charger on your site — charge state, charging mode, scheduled targets, and forecast completion times. All in one place, always up to date.</p>
+        <a href="#contact" class="btn btn--green">See a live demo →</a>
+      </div>
+      <div class="dashboard-section__img">
+        <img src="images/chargers.png" alt="Gridicity dashboard showing charger status, connected vehicles and charging modes" />
+      </div>
+    </div>
+  </div>
+
+
+  <!-- HOW IT WORKS -->
+  <section class="dark-panel" id="how-it-works" aria-labelledby="how-title">
+    <div class="container">
+      <div class="section-title">
+        <p class="section-title__eyebrow">Simple integration</p>
+        <h2 id="how-title">Up and running in days</h2>
+        <p>We fit around your existing infrastructure — no hardware replacement required.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step__num">01</div>
+          <h3>Share tariff &amp; charger details</h3>
+          <p>Provide your energy tariff and charger API credentials. We support all standard protocols including OCPP.</p>
+        </div>
+        <div class="step">
+          <div class="step__num">02</div>
+          <h3>We configure your optimisation</h3>
+          <p>Our team maps your fleet's operational requirements and sets up AI scheduling around your departure times, charging targets, and site constraints.</p>
+        </div>
+        <div class="step">
+          <div class="step__num">03</div>
+          <h3>Go live &amp; monitor</h3>
+          <p>Charging optimisation activates automatically. Track savings, energy usage, and grid activity in real time via your Gridicity dashboard.</p>
+        </div>
+        <div class="step">
+          <div class="step__num">04</div>
+          <h3>Custom integrations</h3>
+          <p>Need to connect to a fleet management system or bespoke charger setup? We can accommodate non-standard integrations — just ask.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- BENEFITS -->
+  <section class="section" id="benefits" aria-labelledby="benefits-title">
+    <div class="container">
+      <div class="section-title">
+        <p class="section-title__eyebrow">Why Gridicity</p>
+        <h2 id="benefits-title">Built for fleets, trusted by operators</h2>
+      </div>
+      <div class="bento">
+        <div class="card card--large">
+          <div class="stat-number">40%</div>
+          <h3>Typical energy cost reduction</h3>
+          <p>By shifting charging to off-peak hours and responding dynamically to tariff changes, Gridicity customers consistently reduce energy spend by 30–40% — without any compromise to fleet operations or driver experience.</p>
+        </div>
+        <div class="card card--medium card--dark">
+          <div class="card__icon" style="background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.15)">🌿</div>
+          <h3>Greener charging</h3>
+          <p>Charging more often when renewable generation is high reduces the carbon intensity of your fleet — a meaningful contribution to net-zero targets.</p>
+        </div>
+        <div class="card card--wide">
+          <div class="card__icon">💸</div>
+          <h3>New revenue streams</h3>
+          <p>Participate in demand flexibility and frequency response markets. Gridicity automates your grid services participation, turning your charger network into an asset that earns revenue rather than just consuming energy.</p>
+        </div>
+        <div class="card card--wide">
+          <div class="card__icon">🛡️</div>
+          <h3>Capacity protection</h3>
+          <p>Avoid peak demand charges and connection upgrade costs. Smart load balancing keeps you within your contracted capacity limit even as your fleet grows.</p>
+        </div>
+        <div class="card card--medium">
+          <div class="card__icon">📊</div>
+          <h3>Live dashboard</h3>
+          <p>Full visibility into charging sessions, costs, savings, and grid activity in one place.</p>
+        </div>
+        <div class="card card--large card--dark">
+          <div class="card__icon" style="background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.15)">⚙️</div>
+          <h3>Zero disruption to drivers</h3>
+          <p>Optimisation happens behind the scenes. Drivers plug in as normal — vehicles are always ready when needed. Fleet operators set the rules; Gridicity handles the rest.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- STAKEHOLDERS -->
+  <section class="section stakeholders" id="stakeholders" aria-labelledby="stakeholders-title">
+    <div class="container">
+      <div class="section-title">
+        <p class="section-title__eyebrow">Who benefits</p>
+        <h2 id="stakeholders-title">Value for everyone in the chain</h2>
+      </div>
+      <div class="stakeholder-grid">
+        <div class="card">
+          <div class="card__icon">🚐</div>
+          <h3>Fleet Operators</h3>
+          <p>Dramatically lower energy bills, avoid demand charges, and access grid revenue — all with a single integration and a real-time dashboard to prove the ROI.</p>
+          <div class="tag-list">
+            <span class="tag">Lower energy bills</span>
+            <span class="tag">Demand charge avoidance</span>
+            <span class="tag">Grid revenue</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card__icon">🧑‍✈️</div>
+          <h3>Drivers</h3>
+          <p>Vehicles are always ready on time. Gridicity's scheduling works around operational requirements — drivers never notice a thing, except a fully charged vehicle waiting for them.</p>
+          <div class="tag-list">
+            <span class="tag">Always ready on time</span>
+            <span class="tag">No behaviour change</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card__icon">⚡</div>
+          <h3>The Grid &amp; Environment</h3>
+          <p>Flexible EV charging absorbs excess renewable generation and reduces stress during peak demand — improving grid stability and accelerating the energy transition.</p>
+          <div class="tag-list">
+            <span class="tag">Supports renewables</span>
+            <span class="tag">Reduces peak demand</span>
+            <span class="tag">Lower emissions</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- CTA -->
+  <section class="section" id="contact" aria-labelledby="cta-title">
+    <div class="container">
+      <div class="cta-inner">
+        <div class="cta-inner__text">
+          <h2 id="cta-title">Ready to cut your charging costs?</h2>
+          <p>Book a free consultation and we'll show you how much you could save based on your fleet size and existing tariff.</p>
+          <a href="mailto:hello@gridicity.co.uk" class="btn--cta-white" style="align-self:flex-start;">Get a free consultation →</a>
+        </div>
+        <div class="cta-inner__photo">
+          <img src="images/solar-ev.jpg" alt="Electric vehicle charging with solar panels and renewable energy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer__inner">
+      <div>
+        <div class="footer__brand-name">Gridicity</div>
+        <div class="footer__brand-product">EV Charging AI</div>
+        <p class="footer__tagline">AI-powered EV charging optimisation for fleets and charge point operators. Reduce costs, prevent grid overload, and unlock new revenue.</p>
+      </div>
+      <div class="footer__col">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#how-it-works">How it works</a></li>
+          <li><a href="#benefits">Benefits</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About us</a></li>
+          <li><a href="#">Insights</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Privacy policy</a></li>
+          <li><a href="#">Terms of service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2024 Gridicity Ltd · Company No. 14250321 (England &amp; Wales)</span>
+      <span>hello@gridicity.co.uk</span>
+    </div>
+  </footer>
+
+
+  <script>
+    function toggleMobileNav() {
+      const links = document.querySelector('.nav__links');
+      const cta = document.querySelector('.nav__cta');
+      const open = links.style.display === 'flex';
+      links.style.cssText = open ? '' : 'display:flex;flex-direction:column;position:fixed;top:4.5rem;left:0;right:0;background:#fff;padding:1.5rem 2rem;gap:1.25rem;border-bottom:1px solid rgba(0,0,0,0.08);z-index:99;';
+      if (cta) cta.style.display = open ? '' : 'none';
+    }
+
+    // Active nav highlight on scroll
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav__links a[href^="#"]');
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          navLinks.forEach(a => a.style.color = '');
+          const active = document.querySelector(`.nav__links a[href="#${e.target.id}"]`);
+          if (active) active.style.color = '#116c4a';
+        }
+      });
+    }, { threshold: 0.35 });
+    sections.forEach(s => io.observe(s));
+  </script>
+
+</body>
+</html>
