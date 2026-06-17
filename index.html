@@ -3,12 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gridicity – Fleet Electrification Consulting</title>
+  <title>Gridicity – Fleet Electrification Advisory</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;700&family=Poppins:ital,wght@0,400;0,600;0,700;0,800;1,600&display=swap" rel="stylesheet" />
   <style>
-    /* ─── Tokens ─── */
     :root {
       --bg:           #f5fbf7;
       --surface:      #ffffff;
@@ -27,34 +26,27 @@
       --r-btn:        12px;
     }
 
-    /* ─── Reset ─── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
       font-family: 'DM Sans', system-ui, sans-serif;
-      background: var(--bg);
-      color: var(--fg);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
+      background: var(--bg); color: var(--fg);
+      line-height: 1.6; -webkit-font-smoothing: antialiased;
     }
     h1, h2, h3, h4 { font-family: 'Poppins', system-ui, sans-serif; line-height: 1.15; }
     a { text-decoration: none; color: inherit; }
     img { max-width: 100%; display: block; }
 
-    /* ─── Layout ─── */
     .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
     .section { padding: 5rem 0; }
 
-    /* ─── Buttons ─── */
+    /* Buttons */
     .btn {
       display: inline-flex; align-items: center; gap: 0.5rem;
-      font-family: 'JetBrains Mono', monospace;
-      font-weight: 700; font-size: 0.875rem;
-      letter-spacing: 0.06em; text-transform: uppercase;
+      font-family: 'JetBrains Mono', monospace; font-weight: 700;
+      font-size: 0.875rem; letter-spacing: 0.06em; text-transform: uppercase;
       padding: 0.875rem 1.75rem; border-radius: var(--r-btn);
-      border: none; cursor: pointer;
-      transition: background 0.15s, transform 0.1s;
-      white-space: nowrap;
+      border: none; cursor: pointer; transition: background 0.15s, transform 0.1s; white-space: nowrap;
     }
     .btn--green  { background: var(--green); color: #fff; }
     .btn--green:hover { background: var(--green-hover); }
@@ -63,25 +55,20 @@
     .btn--outline {
       background: transparent; color: var(--green);
       border: 1.5px solid var(--border-10);
-      font-family: 'DM Sans', sans-serif;
-      text-transform: none; letter-spacing: normal;
-      font-weight: 600; font-size: 0.9375rem;
+      font-family: 'DM Sans', sans-serif; text-transform: none;
+      letter-spacing: normal; font-weight: 600; font-size: 0.9375rem;
     }
     .btn--outline:hover { border-color: rgba(17,108,74,0.4); color: var(--fg); }
     .btn--lg { padding: 1rem 2rem; font-size: 0.9375rem; }
     .btn--cta-white {
-      background: #fff; color: var(--dark);
-      font-family: 'JetBrains Mono', monospace;
-      font-weight: 700; font-size: 0.875rem;
-      letter-spacing: 0.06em; text-transform: uppercase;
-      padding: 0.875rem 2rem; border-radius: var(--r-btn);
-      border: none; cursor: pointer;
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      transition: background 0.15s;
+      background: #fff; color: var(--dark); font-family: 'JetBrains Mono', monospace;
+      font-weight: 700; font-size: 0.875rem; letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 0.875rem 2rem; border-radius: var(--r-btn); border: none; cursor: pointer;
+      display: inline-flex; align-items: center; gap: 0.5rem; transition: background 0.15s;
     }
     .btn--cta-white:hover { background: #f0fdf4; }
 
-    /* ─── Navbar ─── */
+    /* Navbar */
     .nav {
       position: fixed; inset: 0 0 auto 0; z-index: 100;
       background: var(--surface); border-bottom: 1px solid var(--border);
@@ -101,18 +88,16 @@
     .nav__hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
     .nav__hamburger span { display: block; width: 22px; height: 2px; background: var(--fg); border-radius: 2px; }
 
-    /* ─── Hero ─── */
+    /* Hero */
     .hero { padding: 7rem 2rem 4rem; }
     .hero__inner {
       max-width: 1100px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 3rem; align-items: center;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;
     }
     .hero__eyebrow {
       display: inline-flex; align-items: center; gap: 0.5rem;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em;
-      text-transform: uppercase; color: var(--green);
+      font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--green);
       background: rgba(17,108,74,0.06); border: 1px solid rgba(17,108,74,0.15);
       padding: 0.35rem 1rem; border-radius: 9999px; margin-bottom: 1.5rem;
     }
@@ -121,21 +106,48 @@
       letter-spacing: -0.02em; margin-bottom: 1.25rem;
     }
     .hero__title em { font-style: normal; color: var(--green); }
-    .hero__sub {
-      font-size: 1.0625rem; color: var(--fg-55); margin-bottom: 2.25rem; line-height: 1.7;
-    }
+    .hero__sub { font-size: 1.0625rem; color: var(--fg-55); margin-bottom: 2.25rem; line-height: 1.7; }
     .hero__actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
     .hero__image img {
       width: 100%; border-radius: var(--r-card);
       filter: drop-shadow(0 8px 24px rgba(0,0,0,0.10));
     }
 
-    /* ─── Section title ─── */
+    /* Quote band */
+    .quote-band {
+      background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+      padding: 3.5rem 2rem;
+    }
+    .quote-band__inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: auto 1fr; gap: 3rem; align-items: center;
+    }
+    .quote-band__mark {
+      font-family: 'Poppins', sans-serif; font-size: 6rem; font-weight: 800;
+      color: var(--green); line-height: 1; opacity: 0.25; user-select: none;
+      align-self: flex-start; margin-top: -1rem;
+    }
+    .quote-band__text {
+      font-family: 'Poppins', sans-serif; font-size: clamp(1.125rem, 2.2vw, 1.5rem);
+      font-weight: 600; color: var(--fg); letter-spacing: -0.01em; line-height: 1.45;
+      font-style: italic; margin-bottom: 1.25rem;
+    }
+    .quote-band__attr {
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .quote-band__attr-line {
+      width: 2rem; height: 2px; background: var(--green); border-radius: 2px; flex-shrink: 0;
+    }
+    .quote-band__attr-name {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.8125rem; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase; color: var(--green);
+    }
+
+    /* Section titles */
     .section-title { text-align: center; margin-bottom: 3rem; }
     .section-title__eyebrow {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em;
-      text-transform: uppercase; color: var(--green); margin-bottom: 0.75rem;
+      font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--green); margin-bottom: 0.75rem;
     }
     .section-title h2 {
       font-size: clamp(1.75rem, 3.5vw, 2.5rem); color: var(--fg); letter-spacing: -0.02em;
@@ -145,7 +157,7 @@
       max-width: 560px; margin-left: auto; margin-right: auto; line-height: 1.7;
     }
 
-    /* ─── Cards ─── */
+    /* Cards */
     .card {
       background: var(--surface); border: 1px solid var(--border);
       border-radius: var(--r-card); padding: 2rem;
@@ -153,79 +165,88 @@
     }
     .card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
     .card__icon {
-      width: 2.75rem; height: 2.75rem; background: var(--bg);
-      border: 1px solid var(--border); border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
+      width: 2.75rem; height: 2.75rem; background: var(--bg); border: 1px solid var(--border);
+      border-radius: 10px; display: flex; align-items: center; justify-content: center;
       font-size: 1.25rem; margin-bottom: 1.25rem;
     }
     .card h3 { font-size: 1.0625rem; font-weight: 600; color: var(--fg); margin-bottom: 0.625rem; }
     .card p  { font-size: 0.9375rem; color: var(--fg-55); line-height: 1.7; }
 
-    /* ─── Services grid ─── */
-    .services-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.25rem;
+    /* Services */
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.25rem; }
+
+    /* Tags */
+    .tag-list { display: flex; flex-wrap: wrap; gap: 0.375rem; margin-top: 1rem; }
+    .tag {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.6875rem; font-weight: 700;
+      letter-spacing: 0.05em; text-transform: uppercase; padding: 0.25rem 0.625rem;
+      border-radius: 9999px; background: var(--bg); border: 1px solid var(--border-10); color: var(--green);
     }
 
-    /* ─── Process (dark panel) ─── */
+    /* Data insight split section */
+    .data-section { background: var(--surface); padding: 5rem 2rem; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .data-section__inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+    }
+    .data-section__eyebrow {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--green); margin-bottom: 0.75rem;
+    }
+    .data-section h2 { font-size: clamp(1.75rem, 3vw, 2.25rem); color: var(--fg); letter-spacing: -0.02em; margin-bottom: 1rem; }
+    .data-section p { font-size: 1rem; color: var(--fg-55); line-height: 1.7; margin-bottom: 1rem; }
+    .data-section p:last-of-type { margin-bottom: 1.75rem; }
+    .data-section__img { border-radius: var(--r-card); border: 1px solid var(--border); box-shadow: var(--shadow-md); overflow: hidden; }
+    .data-section__img img { width: 100%; display: block; }
+    .data-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.75rem; }
+    .data-bullets li {
+      display: flex; gap: 0.75rem; align-items: flex-start;
+      font-size: 0.9375rem; color: var(--fg-55); line-height: 1.6;
+    }
+    .data-bullets li::before {
+      content: ''; display: block; width: 6px; height: 6px;
+      background: var(--green); border-radius: 50%; margin-top: 0.45rem; flex-shrink: 0;
+    }
+
+    /* Process */
     .dark-panel { background: linear-gradient(135deg, #1b4332 0%, #012d1d 100%); padding: 5rem 2rem; }
     .dark-panel .section-title__eyebrow { color: rgba(161,244,200,0.8); }
     .dark-panel .section-title h2 { color: #fff; }
     .dark-panel .section-title p { color: rgba(255,255,255,0.55); }
-    .steps {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.25rem;
-    }
+    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.25rem; }
     .step {
       background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.10);
       border-radius: var(--r-card); padding: 1.75rem;
     }
     .step__num {
-      font-family: 'JetBrains Mono', monospace; font-weight: 700;
-      font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
-      color: rgba(161,244,200,0.6); margin-bottom: 0.875rem;
+      font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 0.75rem;
+      letter-spacing: 0.1em; text-transform: uppercase; color: rgba(161,244,200,0.6); margin-bottom: 0.875rem;
     }
     .step h3 { font-size: 1rem; font-weight: 600; color: #fff; margin-bottom: 0.5rem; }
     .step p  { font-size: 0.875rem; color: rgba(255,255,255,0.55); line-height: 1.7; }
 
-    /* ─── Why us - split layout ─── */
-    .why-section { background: var(--surface); padding: 5rem 2rem; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    /* Why us */
+    .why-section { padding: 5rem 2rem; }
     .why-inner {
       max-width: 1100px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start;
     }
-    .why-inner__text .section-title { text-align: left; margin-bottom: 2rem; }
+    .why-inner .section-title { text-align: left; margin-bottom: 2rem; }
     .why-list { list-style: none; display: flex; flex-direction: column; gap: 1.25rem; }
-    .why-list li {
-      display: flex; gap: 1rem; align-items: flex-start;
-    }
+    .why-list li { display: flex; gap: 1rem; align-items: flex-start; }
     .why-list__icon {
-      width: 2.25rem; height: 2.25rem; flex-shrink: 0;
-      background: var(--bg); border: 1px solid var(--border);
-      border-radius: 8px; display: flex; align-items: center; justify-content: center;
-      font-size: 1rem; margin-top: 0.125rem;
+      width: 2.25rem; height: 2.25rem; flex-shrink: 0; background: var(--bg);
+      border: 1px solid var(--border); border-radius: 8px;
+      display: flex; align-items: center; justify-content: center; font-size: 1rem; margin-top: 0.125rem;
     }
     .why-list__body strong { display: block; font-weight: 600; color: var(--fg); margin-bottom: 0.2rem; }
-    .why-list__body span  { font-size: 0.9375rem; color: var(--fg-55); line-height: 1.6; }
-    .why-inner__image img {
-      width: 100%; border-radius: var(--r-card);
-      border: 1px solid var(--border); box-shadow: var(--shadow-md);
-    }
+    .why-list__body span { font-size: 0.9375rem; color: var(--fg-55); line-height: 1.6; }
+    .why-inner__image img { width: 100%; border-radius: var(--r-card); border: 1px solid var(--border); box-shadow: var(--shadow-md); }
 
-    /* ─── Tags ─── */
-    .tag-list { display: flex; flex-wrap: wrap; gap: 0.375rem; margin-top: 1rem; }
-    .tag {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.05em;
-      text-transform: uppercase; padding: 0.25rem 0.625rem;
-      border-radius: 9999px; background: var(--bg);
-      border: 1px solid var(--border-10); color: var(--green);
-    }
+    /* Sectors */
+    .sectors-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; }
 
-    /* ─── Sectors ─── */
-    .sectors-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem;
-    }
-
-    /* ─── CTA ─── */
+    /* CTA */
     .cta-inner {
       display: grid; grid-template-columns: 1fr 1fr; gap: 0;
       border-radius: var(--r-card); overflow: hidden; align-items: stretch;
@@ -239,42 +260,30 @@
     .cta-inner__photo { position: relative; min-height: 280px; }
     .cta-inner__photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 
-    /* ─── Footer ─── */
+    /* Footer */
     .footer { background: var(--dark); color: rgba(255,255,255,0.6); padding: 3rem 2rem 2rem; }
-    .footer__inner {
-      max-width: 1100px; margin: 0 auto;
-      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem;
-    }
-    .footer__brand-name {
-      font-family: 'Poppins', sans-serif; font-weight: 400;
-      font-size: 1.0625rem; color: #a1f4c8; letter-spacing: 0.12em; margin-bottom: 0.25rem;
-    }
-    .footer__brand-product {
-      font-family: 'Poppins', sans-serif; font-weight: 700;
-      font-size: 1.25rem; color: #fff; margin-bottom: 0.875rem;
-    }
+    .footer__inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; }
+    .footer__brand-name { font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 1.0625rem; color: #a1f4c8; letter-spacing: 0.12em; margin-bottom: 0.25rem; }
+    .footer__brand-product { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.25rem; color: #fff; margin-bottom: 0.875rem; }
     .footer__tagline { font-size: 0.875rem; line-height: 1.6; }
-    .footer__col h4 {
-      font-family: 'JetBrains Mono', monospace; font-size: 0.6875rem;
-      font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
-      color: #fff; margin-bottom: 1rem;
-    }
+    .footer__col h4 { font-family: 'JetBrains Mono', monospace; font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #fff; margin-bottom: 1rem; }
     .footer__col ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
     .footer__col a { font-size: 0.875rem; color: rgba(255,255,255,0.5); transition: color 0.15s; }
     .footer__col a:hover { color: #a1f4c8; }
     .footer__bottom {
-      max-width: 1100px; margin: 2.5rem auto 0;
-      padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.10);
+      max-width: 1100px; margin: 2.5rem auto 0; padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.10);
       display: flex; justify-content: space-between; align-items: center;
-      font-size: 0.8125rem; gap: 1rem; flex-wrap: wrap;
-      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8125rem; gap: 1rem; flex-wrap: wrap; font-family: 'JetBrains Mono', monospace;
     }
 
-    /* ─── Mobile ─── */
+    /* Responsive */
     @media (max-width: 900px) {
-      .hero__inner, .why-inner { grid-template-columns: 1fr; }
+      .hero__inner, .data-section__inner, .why-inner { grid-template-columns: 1fr; }
       .hero__image { display: none; }
-      .why-inner__image { order: -1; }
+      .quote-band__inner { grid-template-columns: 1fr; gap: 1rem; }
+      .quote-band__mark { display: none; }
+      .data-section__img { order: -1; }
     }
     @media (max-width: 768px) {
       .nav__links, .nav__cta { display: none; }
@@ -295,15 +304,15 @@
   <header class="nav" role="banner">
     <div class="nav__inner">
       <a href="#" class="nav__brand">
-        <img src="gridicity-logo.png" alt="Gridicity logo" style="width:2.5rem;height:2.5rem;object-fit:contain;" />
+        <img src="gridicity-logo.png" alt="Gridicity" style="width:2.5rem;height:2.5rem;object-fit:contain;" />
         <div><div class="nav__brand-name">Gridicity</div></div>
       </a>
       <nav aria-label="Main navigation">
         <ul class="nav__links">
           <li><a href="#services">Services</a></li>
+          <li><a href="#data">Charging data</a></li>
           <li><a href="#process">Our process</a></li>
           <li><a href="#why-us">Why us</a></li>
-          <li><a href="#sectors">Sectors</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
@@ -318,17 +327,17 @@
   <!-- HERO -->
   <section class="hero" aria-labelledby="hero-title">
     <div class="hero__inner">
-      <div class="hero__text">
-        <div class="hero__eyebrow">Fleet Electrification Consulting</div>
+      <div>
+        <div class="hero__eyebrow">Fleet Electrification Advisory</div>
         <h1 class="hero__title" id="hero-title">
-          Expert guidance for your <em>fleet electrification</em> journey
+          Strategic advice for your <em>fleet electrification</em> journey
         </h1>
         <p class="hero__sub">
-          Gridicity works with fleet operators and organisations to plan, evaluate, and deliver the transition to electric vehicles. From business case to charging infrastructure to operational change management, we combine deep sector expertise with AI-powered analysis to make the process faster and less painful.
+          Gridicity provides independent advisory services to fleet operators and organisations navigating the EV transition. We combine sector expertise with AI-powered analysis to give you clear answers faster, whether you are at the business case stage or already deploying and trying to optimise.
         </p>
         <div class="hero__actions">
           <a href="#contact" class="btn btn--dark btn--lg">Book a consultation</a>
-          <a href="#services" class="btn btn--outline btn--lg">Our services →</a>
+          <a href="#services" class="btn btn--outline btn--lg">Our services</a>
         </div>
       </div>
       <div class="hero__image">
@@ -338,79 +347,94 @@
   </section>
 
 
+  <!-- QUOTE -->
+  <div class="quote-band" aria-label="Client testimonial">
+    <div class="quote-band__inner">
+      <div class="quote-band__mark">"</div>
+      <div>
+        <p class="quote-band__text">Working with Gridicity's technical analysis has provided advanced insight into our charging hubs, providing us with the required evidence to ensure charging is optimised to its maximum potential.</p>
+        <div class="quote-band__attr">
+          <div class="quote-band__attr-line"></div>
+          <span class="quote-band__attr-name">Smart Mobility Team, Scottish Power</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
   <!-- SERVICES -->
   <section class="section" id="services" aria-labelledby="services-title">
     <div class="container">
       <div class="section-title">
         <p class="section-title__eyebrow">What we do</p>
-        <h2 id="services-title">End-to-end fleet electrification support</h2>
-        <p>We bring together technical, commercial, and operational expertise to help organisations navigate every stage of the EV transition.</p>
+        <h2 id="services-title">Advisory services for the full transition</h2>
+        <p>From initial strategy through to ongoing optimisation, we provide the analysis and guidance organisations need to make confident decisions at every stage.</p>
       </div>
       <div class="services-grid">
 
         <div class="card">
           <div class="card__icon">📋</div>
-          <h3>Fleet Assessment &amp; Strategy</h3>
-          <p>We analyse your existing fleet across routes, duty cycles, utilisation patterns, and fuel spend to identify which vehicles are ready to electrify now and what the full transition roadmap looks like. Our AI modelling runs thousands of scenarios against your real operational data so you get answers grounded in fact, not assumption.</p>
+          <h3>Fleet Electrification Strategy</h3>
+          <p>We review your fleet profile, operational requirements, and decarbonisation targets to produce a clear electrification roadmap. AI-assisted scenario modelling runs your fleet data against hundreds of variable combinations so that the strategy is grounded in what will actually work for your operation, not industry averages.</p>
           <div class="tag-list">
             <span class="tag">Fleet audit</span>
-            <span class="tag">TCO modelling</span>
+            <span class="tag">Scenario modelling</span>
             <span class="tag">Transition roadmap</span>
           </div>
         </div>
 
         <div class="card">
-          <div class="card__icon">⚡</div>
-          <h3>Charging Infrastructure Planning</h3>
-          <p>Site surveys, load capacity assessments, charger specification, and procurement support. We help you choose the right charging infrastructure for your operation and avoid costly over- or under-investment.</p>
+          <div class="card__icon">📊</div>
+          <h3>Charging Session Data Analysis</h3>
+          <p>Your charging data contains more intelligence than most organisations realise. We analyse charging session records to identify utilisation patterns, inefficiencies, missed optimisation windows, and early signs of asset underperformance. The output is a clear picture of where value is being left on the table and exactly how to recover it.</p>
           <div class="tag-list">
-            <span class="tag">Site surveys</span>
-            <span class="tag">Charger specification</span>
-            <span class="tag">Grid connection advice</span>
+            <span class="tag">Session data review</span>
+            <span class="tag">Utilisation analysis</span>
+            <span class="tag">Optimisation report</span>
           </div>
         </div>
 
         <div class="card">
           <div class="card__icon">💷</div>
-          <h3>Business Case &amp; Funding</h3>
-          <p>We build the financial case for electrification, modelling total cost of ownership, identifying available grants and incentives, and preparing the documentation needed to secure board or funder approval. Our automated TCO models update in real time as vehicle prices, energy tariffs, and grant programmes change, so your business case stays current.</p>
+          <h3>Business Case and Funding</h3>
+          <p>We build the financial case for electrification, modelling total cost of ownership across vehicle, energy, infrastructure, and maintenance costs. Our automated TCO models update continuously as market data changes, so your business case reflects current reality. We also identify grant and incentive opportunities and prepare board-ready documentation.</p>
           <div class="tag-list">
+            <span class="tag">TCO modelling</span>
             <span class="tag">Grant identification</span>
-            <span class="tag">TCO analysis</span>
-            <span class="tag">Board-ready reports</span>
+            <span class="tag">Board reports</span>
           </div>
         </div>
 
         <div class="card">
           <div class="card__icon">🔌</div>
-          <h3>Tariff &amp; Energy Strategy</h3>
-          <p>Charging cost is the largest ongoing variable in EV fleet economics. We advise on tariff selection, smart charging strategy, and energy procurement to minimise your electricity bill. We also connect clients to Gridicity's AI scheduling tools, which automate off-peak charging across your whole site and take the ongoing complexity off your plate.</p>
+          <h3>Energy and Tariff Strategy</h3>
+          <p>Charging cost is the largest ongoing variable in EV fleet economics. We advise on tariff selection, smart charging scheduling, and energy procurement to reduce your electricity bill. For clients who want ongoing automation, we connect deployments to AI scheduling tools that continuously optimise off-peak charging across the whole site without any manual intervention.</p>
           <div class="tag-list">
-            <span class="tag">Tariff optimisation</span>
+            <span class="tag">Tariff analysis</span>
+            <span class="tag">Smart charging</span>
             <span class="tag">Energy procurement</span>
-            <span class="tag">Smart charging strategy</span>
           </div>
         </div>
 
         <div class="card">
-          <div class="card__icon">🏢</div>
-          <h3>Supplier &amp; Procurement Support</h3>
-          <p>From vehicle OEM selection to charge point operator procurement, we provide independent advice and support tender processes so you get the right solution at the right price without vendor lock-in risk. We use market pricing data and AI-assisted comparisons to cut through supplier noise and identify genuine value.</p>
+          <div class="card__icon">🔍</div>
+          <h3>Infrastructure and Procurement Advisory</h3>
+          <p>We provide independent technical and commercial advice on charging infrastructure decisions: specification, supplier selection, and contract terms. With no referral arrangements or preferred supplier relationships, our only objective is finding the right fit for your operation. AI-assisted market analysis cuts through supplier claims and surfaces genuine value.</p>
           <div class="tag-list">
-            <span class="tag">Vehicle selection</span>
-            <span class="tag">CPO tendering</span>
+            <span class="tag">Charger specification</span>
+            <span class="tag">Supplier evaluation</span>
             <span class="tag">Independent advice</span>
           </div>
         </div>
 
         <div class="card">
-          <div class="card__icon">🔄</div>
-          <h3>Operational Change Management</h3>
-          <p>Technology is only half the challenge. We support the people side of fleet electrification: driver communications, training, policy updates, and embedding new processes so the transition sticks. Automated reporting gives fleet managers a live view of progress without adding to their workload.</p>
+          <div class="card__icon">📈</div>
+          <h3>Ongoing Performance Advisory</h3>
+          <p>Electrification is not a one-time project. We work with clients on a retained basis to monitor fleet and charging performance, track KPIs against transition targets, and surface new optimisation opportunities as tariffs, vehicle mixes, and operational patterns evolve. Automated reporting keeps your stakeholders informed without adding to your team's workload.</p>
           <div class="tag-list">
-            <span class="tag">Driver engagement</span>
-            <span class="tag">Policy updates</span>
-            <span class="tag">Training support</span>
+            <span class="tag">KPI monitoring</span>
+            <span class="tag">Automated reporting</span>
+            <span class="tag">Retained advisory</span>
           </div>
         </div>
 
@@ -419,34 +443,58 @@
   </section>
 
 
+  <!-- CHARGING DATA -->
+  <div class="data-section" id="data">
+    <div class="data-section__inner">
+      <div>
+        <p class="data-section__eyebrow">The data advantage</p>
+        <h2>Your charging data is your most underused asset</h2>
+        <p>Most organisations collect charging session data and do very little with it. Every session contains signals about utilisation efficiency, energy cost, charger health, and driver behaviour. Aggregated over time, that data tells a precise story about where your fleet stands and where the biggest gains are.</p>
+        <ul class="data-bullets">
+          <li>Which chargers are being used at peak-rate periods and what that is costing annually</li>
+          <li>Which vehicles are consistently undercharging or missing sessions entirely</li>
+          <li>Where demand peaks are occurring and whether they are triggering capacity charges</li>
+          <li>How actual energy consumption compares to manufacturer range estimates across your specific routes</li>
+          <li>Where smart scheduling would have the greatest financial impact</li>
+        </ul>
+        <p>Our analysis ingests your session exports or API feed and returns a structured findings report with prioritised recommendations. AI agents handle the data processing automatically, so the turnaround is fast and the findings are specific to your operation.</p>
+        <a href="#contact" class="btn btn--green">Analyse my charging data</a>
+      </div>
+      <div class="data-section__img">
+        <img src="images/chargers.png" alt="Gridicity charging dashboard showing session data and optimisation status" />
+      </div>
+    </div>
+  </div>
+
+
   <!-- PROCESS -->
   <section class="dark-panel" id="process" aria-labelledby="process-title">
     <div class="container">
       <div class="section-title">
         <p class="section-title__eyebrow">How we work</p>
-        <h2 id="process-title">A structured path to electrification</h2>
-        <p>Every engagement follows a clear, repeatable process, adapted to your organisation's size, timeline, and starting point. AI-assisted tools run in the background at each stage, so we spend more time on insight and less on number crunching.</p>
+        <h2 id="process-title">Clear, structured, fully remote</h2>
+        <p>All engagements are conducted remotely. We work from your data, not your car park. That keeps things fast, focused, and cost-effective.</p>
       </div>
       <div class="steps">
         <div class="step">
           <div class="step__num">01</div>
-          <h3>Discovery</h3>
-          <p>We start with a structured conversation about your fleet, your constraints, and your goals. No obligation, just clarity on what electrification would mean for you and a rough sense of the numbers before we go any further.</p>
+          <h3>Discovery call</h3>
+          <p>A focused conversation about your fleet, your goals, and where you currently are in the transition. We identify the right scope and come back with a clear proposal, usually within 48 hours.</p>
         </div>
         <div class="step">
           <div class="step__num">02</div>
-          <h3>Fleet audit &amp; analysis</h3>
-          <p>We review your telematics data, fuel records, and operational requirements to build a detailed picture of electrification readiness across your whole fleet.</p>
+          <h3>Data ingestion and analysis</h3>
+          <p>You share fleet data, charging session exports, and energy information. Our AI tools process it automatically and flag the patterns, anomalies, and opportunities that matter most.</p>
         </div>
         <div class="step">
           <div class="step__num">03</div>
-          <h3>Strategy &amp; business case</h3>
-          <p>We deliver a clear recommendation: which vehicles to electrify, in what order, and with what infrastructure. Our AI modelling generates the financial case automatically, so you get a board-ready report without weeks of spreadsheet work.</p>
+          <h3>Strategy and recommendations</h3>
+          <p>We deliver a structured report with prioritised recommendations, financial modelling, and a clear view of the options available to you. Designed to go straight to your decision-makers.</p>
         </div>
         <div class="step">
           <div class="step__num">04</div>
-          <h3>Delivery support</h3>
-          <p>We stay with you through procurement, installation, and go-live, providing independent oversight to keep the project on track. Automated progress dashboards give your team visibility at every stage without needing to chase updates from suppliers.</p>
+          <h3>Ongoing support</h3>
+          <p>For clients who want continued advisory input, we offer retained arrangements covering performance monitoring, updated modelling as conditions change, and access to Gridicity's AI tools.</p>
         </div>
       </div>
     </div>
@@ -456,78 +504,78 @@
   <!-- WHY US -->
   <section class="why-section" id="why-us" aria-labelledby="why-title">
     <div class="why-inner">
-      <div class="why-inner__text">
-        <div class="section-title">
+      <div>
+        <div class="section-title" style="text-align:left;margin-bottom:2rem;">
           <p class="section-title__eyebrow">Why Gridicity</p>
-          <h2 id="why-title">Independent experts, no agenda</h2>
-          <p>We don't sell vehicles, chargers, or software. Our only interest is finding the right answer for your fleet.</p>
+          <h2 id="why-title">Independent expertise, AI-accelerated delivery</h2>
+          <p style="text-align:left;margin-left:0;margin-right:0;">We have no commercial relationships with vehicle manufacturers or charge point operators. Our advice is independent. Our tools are fast. The combination means you get better analysis in less time.</p>
         </div>
         <ul class="why-list">
           <li>
             <div class="why-list__icon">🎯</div>
             <div class="why-list__body">
               <strong>Truly independent</strong>
-              <span>We have no commercial relationships with vehicle OEMs or charge point operators, so our advice is never skewed by referral fees or preferred supplier arrangements.</span>
-            </div>
-          </li>
-          <li>
-            <div class="why-list__icon">🔬</div>
-            <div class="why-list__body">
-              <strong>Data-led approach</strong>
-              <span>Our recommendations are grounded in your actual fleet data: real routes, real utilisation, real energy costs. AI-powered analysis processes that data automatically, so insights that used to take weeks of consultancy time now arrive in days.</span>
+              <span>No referral fees, no preferred suppliers, no product to sell. Our only interest is getting the right answer for your fleet.</span>
             </div>
           </li>
           <li>
             <div class="why-list__icon">⚡</div>
             <div class="why-list__body">
-              <strong>Deep EV expertise</strong>
-              <span>From grid connection constraints to smart charging economics, we understand the full technical landscape. We also build and use our own AI tools, so we can automate the repetitive parts of fleet analysis and focus our expertise where it actually matters.</span>
+              <strong>AI-powered, not manually assembled</strong>
+              <span>We use agentic AI tools to ingest and process fleet and charging data automatically. Insights that used to require weeks of analyst time are returned in days. That speed benefit passes directly to clients.</span>
+            </div>
+          </li>
+          <li>
+            <div class="why-list__icon">🔬</div>
+            <div class="why-list__body">
+              <strong>Built on real data</strong>
+              <span>Our recommendations come from your actual charging session records, energy tariffs, and operational data. Not benchmarks, not assumptions.</span>
             </div>
           </li>
           <li>
             <div class="why-list__icon">🤝</div>
             <div class="why-list__body">
-              <strong>Practical, not theoretical</strong>
-              <span>We've worked with real fleet operators navigating real constraints: tight budgets, limited grid capacity, driver resistance. We know what works in practice and where automation can take the admin burden off already stretched teams.</span>
+              <strong>Practical and decision-ready</strong>
+              <span>Every output is structured for the people who need to act on it, whether that is a procurement team, a finance director, or a board. We do not produce research reports that sit on a shelf.</span>
             </div>
           </li>
         </ul>
       </div>
       <div class="why-inner__image">
-        <img src="images/chargers.png" alt="Gridicity fleet electrification dashboard" />
+        <img src="images/app-dashboard.jpg" alt="Energy monitoring and fleet analysis" />
       </div>
     </div>
   </section>
 
 
   <!-- SECTORS -->
-  <section class="section" id="sectors" aria-labelledby="sectors-title">
+  <section class="section" id="sectors" aria-labelledby="sectors-title" style="background:var(--surface);border-top:1px solid var(--border);">
     <div class="container">
       <div class="section-title">
         <p class="section-title__eyebrow">Who we work with</p>
         <h2 id="sectors-title">Sectors we serve</h2>
-        <p>We work with any organisation operating a fleet, from local authorities to logistics companies to housing associations.</p>
+        <p>We work with any organisation operating a fleet, from local authorities to logistics businesses to housing associations.</p>
       </div>
       <div class="sectors-grid">
         <div class="card">
           <div class="card__icon">🏛️</div>
-          <h3>Local Authorities &amp; Public Sector</h3>
-          <p>Supporting councils, NHS trusts, and other public bodies to meet net-zero fleet commitments, with funding navigation and procurement compliance built in. Automated reporting helps you demonstrate progress to stakeholders without extra overhead.</p>
+          <h3>Local Authorities and Public Sector</h3>
+          <p>Supporting councils, NHS trusts, and other public bodies to meet net-zero fleet commitments. We navigate funding programmes and procurement frameworks on your behalf and produce the evidence base needed for governance approvals.</p>
         </div>
         <div class="card">
           <div class="card__icon">📦</div>
-          <h3>Logistics &amp; Delivery</h3>
-          <p>High-mileage, multi-shift operations with complex charging demands. We specialise in making the economics work even at the edges of current EV range and payload capability.</p>
+          <h3>Logistics and Last-Mile Delivery</h3>
+          <p>High-utilisation fleets with complex charging demands and tight operational windows. We model the real numbers: range against actual routes, charging windows against shift patterns, and infrastructure cost against your specific site constraints.</p>
         </div>
         <div class="card">
           <div class="card__icon">🏗️</div>
-          <h3>Field Service &amp; Utilities</h3>
-          <p>Engineers and technicians covering wide geographic areas. We model the tipping points between home charging, depot charging, and public network reliance.</p>
+          <h3>Field Service and Utilities</h3>
+          <p>Engineers and technicians operating across wide geographic areas. We analyse whether depot, home, or public charging is the right mix, and what the financial case looks like under each scenario.</p>
         </div>
         <div class="card">
           <div class="card__icon">🏠</div>
-          <h3>Housing &amp; Social Care</h3>
-          <p>Smaller fleets with tight budgets and grant eligibility. We help housing associations and care providers access LEVI and OZEV funding and build the case for their board.</p>
+          <h3>Housing and Social Care</h3>
+          <p>Smaller fleets with limited internal resource and real budget constraints. We help housing associations and care providers access LEVI and OZEV funding, build the business case, and make sound infrastructure decisions without needing in-house expertise.</p>
         </div>
       </div>
     </div>
@@ -539,9 +587,9 @@
     <div class="container">
       <div class="cta-inner">
         <div class="cta-inner__text">
-          <h2 id="cta-title">Start your electrification journey</h2>
-          <p>Book a free discovery call. We'll listen to where you are, explain what's possible, and outline how we'd work together. No sales pitch, no obligation.</p>
-          <a href="mailto:hello@gridicity.co.uk" class="btn--cta-white" style="align-self:flex-start;">Book a free call →</a>
+          <h2 id="cta-title">Start the conversation</h2>
+          <p>Book a free discovery call. We will listen to where you are, explain what is possible, and outline how we would work together. No sales pitch, no obligation.</p>
+          <a href="mailto:hello@gridicity.co.uk" class="btn--cta-white" style="align-self:flex-start;">Book a free call</a>
         </div>
         <div class="cta-inner__photo">
           <img src="images/solar-ev.jpg" alt="Electric vehicle charging with solar panels and renewable energy" />
@@ -557,15 +605,15 @@
       <div>
         <div class="footer__brand-name">Gridicity</div>
         <div class="footer__brand-product">Fleet Electrification</div>
-        <p class="footer__tagline">Independent fleet electrification consulting. We help organisations plan and deliver the transition to electric vehicles, from business case to charging infrastructure, powered by AI modelling and automation.</p>
+        <p class="footer__tagline">Independent fleet electrification advisory. Strategy, charging data analysis, business case development, and ongoing performance support, powered by AI modelling and automation.</p>
       </div>
       <div class="footer__col">
         <h4>Services</h4>
         <ul>
-          <li><a href="#services">Fleet assessment</a></li>
-          <li><a href="#services">Infrastructure planning</a></li>
-          <li><a href="#services">Business case &amp; funding</a></li>
-          <li><a href="#services">Tariff strategy</a></li>
+          <li><a href="#services">Electrification strategy</a></li>
+          <li><a href="#data">Charging data analysis</a></li>
+          <li><a href="#services">Business case</a></li>
+          <li><a href="#services">Energy strategy</a></li>
         </ul>
       </div>
       <div class="footer__col">
@@ -585,7 +633,7 @@
       </div>
     </div>
     <div class="footer__bottom">
-      <span>© 2024 Gridicity Ltd · Company No. 14250321 (England &amp; Wales)</span>
+      <span>2024 Gridicity Ltd · Company No. 14250321 (England and Wales)</span>
       <span>hello@gridicity.co.uk</span>
     </div>
   </footer>
@@ -599,8 +647,7 @@
       links.style.cssText = open ? '' : 'display:flex;flex-direction:column;position:fixed;top:4.5rem;left:0;right:0;background:#fff;padding:1.5rem 2rem;gap:1.25rem;border-bottom:1px solid rgba(0,0,0,0.08);z-index:99;';
       if (cta) cta.style.display = open ? '' : 'none';
     }
-
-    const sections = document.querySelectorAll('section[id]');
+    const sections = document.querySelectorAll('section[id], div[id]');
     const navLinks = document.querySelectorAll('.nav__links a[href^="#"]');
     const io = new IntersectionObserver(entries => {
       entries.forEach(e => {
