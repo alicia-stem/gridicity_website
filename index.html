@@ -128,8 +128,8 @@
       align-self: flex-start; margin-top: -1rem;
     }
     .quote-band__text {
-      font-family: 'Poppins', sans-serif; font-size: clamp(1.125rem, 2.2vw, 1.5rem);
-      font-weight: 600; color: var(--fg); letter-spacing: -0.01em; line-height: 1.45;
+      font-family: 'Poppins', sans-serif; font-size: clamp(0.9375rem, 1.6vw, 1.1875rem);
+      font-weight: 600; color: var(--fg); letter-spacing: -0.01em; line-height: 1.5;
       font-style: italic; margin-bottom: 1.25rem;
     }
     .quote-band__attr {
@@ -142,6 +142,8 @@
       font-family: 'JetBrains Mono', monospace; font-size: 0.8125rem; font-weight: 700;
       letter-spacing: 0.06em; text-transform: uppercase; color: var(--green);
     }
+    .quote-band__logo { display: flex; align-items: center; }
+    .quote-band__logo svg { height: 2rem; width: auto; opacity: 0.75; }
 
     /* Section titles */
     .section-title { text-align: center; margin-bottom: 3rem; }
@@ -262,7 +264,7 @@
 
     /* Footer */
     .footer { background: var(--dark); color: rgba(255,255,255,0.6); padding: 3rem 2rem 2rem; }
-    .footer__inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; }
+    .footer__inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 2.5rem; }
     .footer__brand-name { font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 1.0625rem; color: #a1f4c8; letter-spacing: 0.12em; margin-bottom: 0.25rem; }
     .footer__brand-product { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.25rem; color: #fff; margin-bottom: 0.875rem; }
     .footer__tagline { font-size: 0.875rem; line-height: 1.6; }
@@ -286,7 +288,7 @@
       .data-section__img { order: -1; }
     }
     @media (max-width: 768px) {
-      .nav__links, .nav__cta { display: none; }
+      .nav__links, .nav__cta, .nav__tco { display: none; }
       .nav__hamburger { display: flex; }
       .cta-inner { grid-template-columns: 1fr; }
       .cta-inner__photo { min-height: 220px; }
@@ -316,7 +318,12 @@
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
-      <a href="#contact" class="btn btn--dark nav__cta">Book a consultation</a>
+      <div style="display:flex;align-items:center;gap:0.75rem;">
+        <a href="https://xyy2secu.projects.saasbrella.co/" target="_blank" rel="noopener" class="btn btn--green nav__tco" style="font-size:0.75rem;padding:0.6rem 1.1rem;">
+          ⚡ Fleet TCO Calculator
+        </a>
+        <a href="#contact" class="btn btn--dark nav__cta">Book a consultation</a>
+      </div>
       <button class="nav__hamburger" aria-label="Open menu" onclick="toggleMobileNav()">
         <span></span><span></span><span></span>
       </button>
@@ -355,7 +362,18 @@
         <p class="quote-band__text">Working with Gridicity's technical analysis has provided advanced insight into our charging hubs, providing us with the required evidence to ensure charging is optimised to its maximum potential.</p>
         <div class="quote-band__attr">
           <div class="quote-band__attr-line"></div>
-          <span class="quote-band__attr-name">Smart Mobility Team, Scottish Power</span>
+          <div>
+            <span class="quote-band__attr-name">Smart Mobility Team, Scottish Power</span>
+            <div class="quote-band__logo" style="margin-top:0.5rem;">
+              <svg viewBox="0 0 200 36" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ScottishPower" style="height:1.75rem;width:auto;opacity:0.7;">
+                <rect x="0" y="2" width="28" height="28" rx="3" fill="#0072CE"/>
+                <polygon points="14,5 22,19 6,19" fill="#fff"/>
+                <polygon points="14,29 6,15 22,15" fill="#fff" opacity="0.55"/>
+                <text x="36" y="16" font-family="Arial,sans-serif" font-weight="700" font-size="11" fill="#0072CE">Scottish</text>
+                <text x="36" y="30" font-family="Arial,sans-serif" font-weight="700" font-size="11" fill="#222">Power</text>
+              </svg>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -472,7 +490,7 @@
     <div class="container">
       <div class="section-title">
         <p class="section-title__eyebrow">How we work</p>
-        <h2 id="process-title">Clear, structured, fully remote</h2>
+        <h2 id="process-title">Clear, structured, and data-led</h2>
         <p>All engagements are conducted remotely. We work from your data, not your car park. That keeps things fast, focused, and cost-effective.</p>
       </div>
       <div class="steps">
@@ -572,11 +590,111 @@
           <h3>Field Service and Utilities</h3>
           <p>Engineers and technicians operating across wide geographic areas. We analyse whether depot, home, or public charging is the right mix, and what the financial case looks like under each scenario.</p>
         </div>
-        <div class="card">
-          <div class="card__icon">🏠</div>
-          <h3>Housing and Social Care</h3>
-          <p>Smaller fleets with limited internal resource and real budget constraints. We help housing associations and care providers access LEVI and OZEV funding, build the business case, and make sound infrastructure decisions without needing in-house expertise.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FLEET TCO CALCULATOR -->
+  <section class="section" id="tco" aria-labelledby="tco-title" style="background:var(--surface);border-top:1px solid var(--border);">
+    <div class="container">
+      <div class="section-title">
+        <p class="section-title__eyebrow">Free tool</p>
+        <h2 id="tco-title">Fleet TCO Calculator</h2>
+        <p>Model the true total cost of ownership for your fleet electrification — comparing EV against ICE across vehicles, energy, infrastructure, and maintenance. Free to use, no sign-up required.</p>
+      </div>
+
+      <!-- Two-up mockup screenshots -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2.5rem;">
+
+        <!-- Input panel mockup -->
+        <div style="border-radius:var(--r-card);border:1px solid var(--border);box-shadow:var(--shadow-md);overflow:hidden;background:#fff;">
+          <div style="background:var(--dark);padding:0.75rem 1rem;display:flex;align-items:center;gap:0.5rem;">
+            <div style="width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.2);"></div>
+            <div style="width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.2);"></div>
+            <div style="width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.2);"></div>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:0.6875rem;color:rgba(255,255,255,0.4);margin-left:0.5rem;letter-spacing:0.05em;">Fleet configuration</span>
+          </div>
+          <div style="padding:1.5rem;background:#f5fbf7;">
+            <div style="font-family:'Poppins',sans-serif;font-weight:600;font-size:1rem;color:var(--fg);margin-bottom:1.25rem;">What would it cost to switch your fleet to electric?</div>
+            <!-- Fleet type selector -->
+            <div style="margin-bottom:1rem;">
+              <div style="font-family:'DM Sans',sans-serif;font-size:0.8125rem;font-weight:600;color:var(--fg);margin-bottom:0.5rem;">Fleet type</div>
+              <div style="display:flex;gap:0.5rem;">
+                <div style="flex:1;border:1.5px solid var(--green);background:#fff;border-radius:10px;padding:0.6rem 0.75rem;text-align:center;font-family:'DM Sans',sans-serif;font-size:0.8125rem;font-weight:600;color:var(--green);">🚐 Vans</div>
+                <div style="flex:1;border:1px solid rgba(0,0,0,0.10);background:#fff;border-radius:10px;padding:0.6rem 0.75rem;text-align:center;font-family:'DM Sans',sans-serif;font-size:0.8125rem;color:rgba(14,28,23,0.5);">🚗 Cars</div>
+                <div style="flex:1;border:1px solid rgba(0,0,0,0.10);background:#fff;border-radius:10px;padding:0.6rem 0.75rem;text-align:center;font-family:'DM Sans',sans-serif;font-size:0.8125rem;color:rgba(14,28,23,0.5);">🚛 HGV</div>
+              </div>
+            </div>
+            <!-- Number of vehicles -->
+            <div style="margin-bottom:1rem;">
+              <div style="font-family:'DM Sans',sans-serif;font-size:0.8125rem;font-weight:600;color:var(--fg);margin-bottom:0.5rem;">Number of vehicles</div>
+              <div style="background:#fff;border:1px solid rgba(0,0,0,0.10);border-radius:10px;padding:0.65rem 1rem;font-family:'JetBrains Mono',monospace;font-size:0.9375rem;font-weight:700;color:var(--fg);">25</div>
+            </div>
+            <!-- Annual mileage -->
+            <div style="margin-bottom:1.25rem;">
+              <div style="font-family:'DM Sans',sans-serif;font-size:0.8125rem;font-weight:600;color:var(--fg);margin-bottom:0.5rem;">Average annual mileage per vehicle</div>
+              <div style="background:#fff;border:1px solid rgba(0,0,0,0.10);border-radius:10px;padding:0.65rem 1rem;font-family:'JetBrains Mono',monospace;font-size:0.9375rem;font-weight:700;color:var(--fg);">18,000 mi</div>
+            </div>
+            <div style="background:var(--green);color:#fff;border-radius:var(--r-btn);padding:0.75rem 1.25rem;text-align:center;font-family:'JetBrains Mono',monospace;font-size:0.8125rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;">Calculate TCO →</div>
+          </div>
         </div>
+
+        <!-- Results panel mockup -->
+        <div style="border-radius:var(--r-card);border:1px solid var(--border);box-shadow:var(--shadow-md);overflow:hidden;background:#fff;">
+          <div style="background:linear-gradient(135deg,#1b4332 0%,#012d1d 100%);padding:0.75rem 1rem;display:flex;align-items:center;gap:0.5rem;">
+            <div style="width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.15);"></div>
+            <div style="width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.15);"></div>
+            <div style="width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.15);"></div>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:0.6875rem;color:rgba(255,255,255,0.4);margin-left:0.5rem;letter-spacing:0.05em;">TCO results — 5 year projection</span>
+          </div>
+          <div style="padding:1.5rem;background:#f5fbf7;">
+            <!-- Summary numbers -->
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-bottom:1.25rem;">
+              <div style="background:#fff;border:1px solid var(--border);border-radius:12px;padding:1rem;">
+                <div style="font-family:'JetBrains Mono',monospace;font-size:0.6875rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(14,28,23,0.4);margin-bottom:0.375rem;">EV fleet (5yr)</div>
+                <div style="font-family:'JetBrains Mono',monospace;font-size:1.375rem;font-weight:700;color:var(--green);">£1.24M</div>
+              </div>
+              <div style="background:#fff;border:1px solid var(--border);border-radius:12px;padding:1rem;">
+                <div style="font-family:'JetBrains Mono',monospace;font-size:0.6875rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(14,28,23,0.4);margin-bottom:0.375rem;">ICE fleet (5yr)</div>
+                <div style="font-family:'JetBrains Mono',monospace;font-size:1.375rem;font-weight:700;color:var(--fg);">£1.61M</div>
+              </div>
+            </div>
+            <!-- Saving highlight -->
+            <div style="background:linear-gradient(135deg,#116c4a 0%,#1b4332 100%);border-radius:12px;padding:1rem 1.25rem;margin-bottom:1rem;display:flex;justify-content:space-between;align-items:center;">
+              <span style="font-family:'DM Sans',sans-serif;font-size:0.875rem;font-weight:600;color:rgba(255,255,255,0.8);">5-year saving</span>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:1.25rem;font-weight:700;color:#a1f4c8;">£370K</span>
+            </div>
+            <!-- Bar chart sketch -->
+            <div style="display:flex;align-items:flex-end;gap:0.375rem;height:3.5rem;">
+              <div style="flex:1;background:rgba(17,108,74,0.15);border-radius:4px 4px 0 0;height:60%;position:relative;">
+                <div style="position:absolute;inset:0;background:var(--green);border-radius:4px 4px 0 0;opacity:0.9;"></div>
+              </div>
+              <div style="flex:1;background:rgba(14,28,23,0.08);border-radius:4px 4px 0 0;height:80%;"></div>
+              <div style="flex:1;background:rgba(17,108,74,0.15);border-radius:4px 4px 0 0;height:50%;position:relative;">
+                <div style="position:absolute;inset:0;background:var(--green);border-radius:4px 4px 0 0;opacity:0.7;"></div>
+              </div>
+              <div style="flex:1;background:rgba(14,28,23,0.08);border-radius:4px 4px 0 0;height:100%;"></div>
+              <div style="flex:1;background:rgba(17,108,74,0.15);border-radius:4px 4px 0 0;height:45%;position:relative;">
+                <div style="position:absolute;inset:0;background:var(--green);border-radius:4px 4px 0 0;opacity:0.6;"></div>
+              </div>
+              <div style="flex:1;background:rgba(14,28,23,0.08);border-radius:4px 4px 0 0;height:72%;"></div>
+            </div>
+            <div style="display:flex;gap:1rem;margin-top:0.5rem;">
+              <div style="display:flex;align-items:center;gap:0.375rem;font-family:'DM Sans',sans-serif;font-size:0.75rem;color:rgba(14,28,23,0.5);">
+                <div style="width:8px;height:8px;border-radius:2px;background:var(--green);"></div> EV
+              </div>
+              <div style="display:flex;align-items:center;gap:0.375rem;font-family:'DM Sans',sans-serif;font-size:0.75rem;color:rgba(14,28,23,0.5);">
+                <div style="width:8px;height:8px;border-radius:2px;background:rgba(14,28,23,0.2);"></div> ICE
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div style="text-align:center;">
+        <a href="https://xyy2secu.projects.saasbrella.co/" target="_blank" rel="noopener" class="btn btn--green btn--lg">Try the Fleet TCO Calculator →</a>
       </div>
     </div>
   </section>
@@ -614,6 +732,12 @@
           <li><a href="#data">Charging data analysis</a></li>
           <li><a href="#services">Business case</a></li>
           <li><a href="#services">Energy strategy</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Tools</h4>
+        <ul>
+          <li><a href="https://xyy2secu.projects.saasbrella.co/" target="_blank" rel="noopener">Fleet TCO Calculator</a></li>
         </ul>
       </div>
       <div class="footer__col">
