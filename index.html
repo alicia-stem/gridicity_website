@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gridicity – Intelligent EV Charging Optimisation</title>
+  <meta name="description" content="Gridicity is an independent advisory for fleet electrification and EV charging. Data-driven, AI-assisted analysis and practical recommendations. We do not sell hardware, software, or energy contracts, so the advice is unbiased." />
+  <title>Gridicity – Independent Fleet Electrification &amp; EV Charging Advisory</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;700&family=Poppins:ital,wght@0,400;0,600;0,700;0,800;1,600&display=swap" rel="stylesheet" />
@@ -81,6 +82,33 @@
     }
     .btn--outline:hover { border-color: rgba(17,108,74,0.4); color: var(--fg); }
     .btn--lg { padding: 1rem 2rem; font-size: 0.9375rem; }
+    .btn--nav { padding: 0.55rem 1rem; font-size: 0.75rem; }
+
+    /* ─── Nav actions ─── */
+    .nav__actions { display: flex; align-items: center; gap: 0.5rem; }
+
+    /* ─── Quote band ─── */
+    .quote-band {
+      background: var(--surface);
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+      padding: 3.25rem 2rem;
+    }
+    .quote-band__inner { max-width: 900px; margin: 0 auto; text-align: center; }
+    .quote-band__text {
+      font-family: 'Poppins', sans-serif; font-weight: 600; font-style: italic;
+      font-size: clamp(1.125rem, 2.2vw, 1.5rem); line-height: 1.5;
+      letter-spacing: -0.01em; color: var(--fg); margin-bottom: 1.5rem;
+    }
+    .quote-band__attr { display: flex; align-items: center; justify-content: center; gap: 0.875rem; flex-wrap: wrap; }
+    .quote-band__name {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.8125rem; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase; color: var(--green);
+    }
+    .quote-band__divider { width: 1px; height: 1.1rem; background: var(--border-10); }
+    .quote-band__brand {
+      font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 1.0625rem;
+      color: var(--fg); letter-spacing: -0.01em;
+    }
 
     /* ─── Navbar ─── */
     .nav {
@@ -323,6 +351,31 @@
     }
     .btn--cta-white:hover { background: #f0fdf4; }
 
+    /* ─── TCO feature ─── */
+    .tco-feature {
+      background: linear-gradient(135deg, #116c4a 0%, #1b4332 100%);
+      border-radius: var(--r-card);
+      padding: 3.5rem 2rem; text-align: center;
+    }
+    .tco-feature__eyebrow {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase; color: rgba(161,244,200,0.85); margin-bottom: 0.75rem;
+    }
+    .tco-feature h2 { font-size: clamp(1.5rem, 3vw, 2.125rem); color: #fff; letter-spacing: -0.02em; }
+    .tco-feature__sub {
+      font-size: 1rem; color: rgba(255,255,255,0.65); line-height: 1.7;
+      max-width: 540px; margin: 0.875rem auto 2rem;
+    }
+    .tco-feature__shot {
+      max-width: 600px; margin: 0 auto 2rem;
+      border-radius: 12px; overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.28);
+      transition: transform 0.2s;
+    }
+    .tco-feature__shot:hover { transform: translateY(-2px); }
+    .tco-feature__shot img { display: block; width: 100%; }
+
     /* ─── Hero image ─── */
     .hero__img-wrap {
       max-width: 120px; margin: 2.5rem auto 0;
@@ -417,13 +470,17 @@
       </a>
       <nav aria-label="Main navigation">
         <ul class="nav__links">
-          <li><a href="#features">Features</a></li>
+          <li><a href="#services">Services</a></li>
           <li><a href="#how-it-works">How it works</a></li>
-          <li><a href="#benefits">Benefits</a></li>
+          <li><a href="#why">Why Gridicity</a></li>
+          <li><a href="#about">About</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
-      <a href="#contact" class="btn btn--dark nav__cta">Get a free consultation</a>
+      <div class="nav__actions">
+        <a href="https://xyy2secu.projects.saasbrella.co/" target="_blank" rel="noopener" class="btn btn--green btn--nav">⚡ TCO Calculator</a>
+        <a href="#contact" class="btn btn--dark btn--nav nav__cta">Book a call</a>
+      </div>
       <button class="nav__hamburger" aria-label="Open menu" onclick="toggleMobileNav()">
         <span></span><span></span><span></span>
       </button>
@@ -435,30 +492,16 @@
   <section class="hero" aria-labelledby="hero-title">
     <div class="hero__inner">
       <div class="hero__text">
-        <div class="hero__eyebrow">AI-Powered EV Charging</div>
+        <div class="hero__eyebrow">Independent Fleet Electrification Advisory</div>
         <h1 class="hero__title" id="hero-title">
-          Save 40% on your energy bill with <em>intelligent</em> EV charging
+          Independent, data-driven advice on <em>fleet electrification</em> and EV charging
         </h1>
         <p class="hero__sub">
-          Fleets and charge point operators use Gridicity's AI solutions to optimise electric vehicle charging schedules — reducing costs, preventing grid overload, and unlocking new revenue.
+          From planning your infrastructure to optimising what you already run. We do not sell hardware, software, or energy contracts, so our advice is unbiased. There is no platform to integrate and no lock-in.
         </p>
         <div class="hero__actions">
-          <a href="#contact" class="btn btn--dark btn--lg">Get a free consultation</a>
-          <a href="#how-it-works" class="btn btn--outline btn--lg">See how it works →</a>
-        </div>
-        <div class="hero__stats" aria-label="Key statistics">
-          <div class="hero__stat">
-            <div class="hero__stat-number">40%</div>
-            <div class="hero__stat-label">Average energy cost reduction</div>
-          </div>
-          <div class="hero__stat">
-            <div class="hero__stat-number">Days</div>
-            <div class="hero__stat-label">Typical time to deploy</div>
-          </div>
-          <div class="hero__stat">
-            <div class="hero__stat-number">24/7</div>
-            <div class="hero__stat-label">Real-time monitoring</div>
-          </div>
+          <a href="mailto:hello@gridicity.co.uk" class="btn btn--dark btn--lg">Book a free consultation</a>
+          <a href="#services" class="btn btn--outline btn--lg">Our services →</a>
         </div>
       </div>
       <div class="hero__image">
@@ -468,168 +511,147 @@
   </section>
 
 
-  <!-- FEATURES -->
-  <section class="section" id="features" aria-labelledby="features-title">
+  <!-- QUOTE -->
+  <div class="quote-band" aria-label="Client testimonial">
+    <div class="quote-band__inner">
+      <p class="quote-band__text">"Working with Gridicity's technical analysis has provided advanced insight into our charging hubs, providing us with the required evidence to ensure charging is optimised to its maximum potential."</p>
+      <div class="quote-band__attr">
+        <span class="quote-band__name">Smart Mobility Team</span>
+        <span class="quote-band__divider"></span>
+        <img src="images/Scottish_Power_logo.svg" alt="ScottishPower" style="height:1.75rem;width:auto;" />
+      </div>
+    </div>
+  </div>
+
+
+  <!-- SERVICES -->
+  <section class="section" id="services" aria-labelledby="services-title">
     <div class="container">
       <div class="section-title">
-        <p class="section-title__eyebrow">Core capabilities</p>
-        <h2 id="features-title">Smarter charging, automatically</h2>
-        <p>Gridicity continuously analyses energy markets, grid conditions, and your fleet's schedule to find the cheapest, most efficient charging windows.</p>
+        <p class="section-title__eyebrow">What we do</p>
+        <h2 id="services-title">Advice for every stage of the journey</h2>
+        <p>Three areas of work, mapped to where you are: planning the switch, getting the infrastructure right, and optimising a fleet that is already electric.</p>
       </div>
       <div class="features-grid">
         <div class="card">
-          <div class="card__icon">⚡</div>
-          <h3>Variable Tariff Optimisation</h3>
-          <p>Energy prices fluctuate throughout the day, week, and season. Gridicity monitors supply, demand, and real-time pricing to automatically schedule charging during the lowest-cost windows — without compromising fleet availability.</p>
+          <div class="card__icon">🗺️</div>
+          <h3>Electrification planning</h3>
+          <p>Which vehicles to switch and when, total cost of ownership against fuel, and what the transition looks like operationally. We give you a clear, evidence-based view before you commit any budget. For a quick first estimate of the numbers, try our free <a href="https://xyy2secu.projects.saasbrella.co/" target="_blank" rel="noopener" style="color:var(--green);font-weight:600;">TCO Calculator</a>.</p>
         </div>
         <div class="card">
-          <div class="card__icon">⚖️</div>
-          <h3>Dynamic Load Management</h3>
-          <p>Distribute a limited energy supply intelligently across multiple EV chargers on a single site. Gridicity prevents costly capacity overages and demand-charge penalties by balancing load in real time.</p>
+          <div class="card__icon">🔌</div>
+          <h3>Infrastructure and charging strategy</h3>
+          <p>Charger numbers and power ratings, site capacity and grid connection, tariff selection, and a charging strategy around your duty cycles. Getting this right early avoids expensive demand charges. We specify requirements, sanity-check supplier quotes, and bring in trusted partners for specialist work like electrical design and grid flexibility participation.</p>
         </div>
         <div class="card">
-          <div class="card__icon">🔋</div>
-          <h3>Grid Capacity Services</h3>
-          <p>When the grid is strained, Gridicity can pause charging and sell that demand flexibility back to the grid — generating revenue while helping balance the network. Your fleet always maintains minimum required charge.</p>
+          <div class="card__icon">📊</div>
+          <h3>Charging analysis and optimisation</h3>
+          <p>For fleets already running EVs. We analyse your charging data and tariffs to surface waste and patterns you cannot see from the invoice, then recommend practical operational changes that cut costs. You get clear priorities to act on straight away, with no new software required.</p>
         </div>
       </div>
     </div>
   </section>
 
 
-  <!-- DASHBOARD SCREENSHOT -->
-  <div class="dashboard-section">
-    <div class="dashboard-section__inner">
-      <div>
-        <p class="dashboard-section__eyebrow">Real product</p>
-        <h2>Full visibility, zero guesswork</h2>
-        <p>The Gridicity dashboard gives you a live view of every charger on your site — charge state, charging mode, scheduled targets, and forecast completion times. All in one place, always up to date.</p>
-        <a href="#contact" class="btn btn--green">See a live demo →</a>
-      </div>
-      <div class="dashboard-section__img">
-        <img src="images/chargers.png" alt="Gridicity dashboard showing charger status, connected vehicles and charging modes" />
+  <!-- TCO CALCULATOR -->
+  <section class="section" id="tco" aria-labelledby="tco-title">
+    <div class="container">
+      <div class="tco-feature">
+        <p class="tco-feature__eyebrow">Free tool</p>
+        <h2 id="tco-title">Try our free TCO Calculator</h2>
+        <p class="tco-feature__sub">Model the true cost of switching your fleet to electric against staying on fuel, live as you adjust the numbers. Free to use, with no sign-up required.</p>
+        <div class="tco-feature__shot">
+          <a href="https://xyy2secu.projects.saasbrella.co/" target="_blank" rel="noopener" aria-label="Open the Fleet TCO Calculator">
+            <img src="images/tco-calculator.png" alt="Gridicity Fleet TCO Calculator showing vehicle type, fuel type and fleet size inputs" />
+          </a>
+        </div>
+        <a href="https://xyy2secu.projects.saasbrella.co/" target="_blank" rel="noopener" class="btn--cta-white">Try the TCO Calculator →</a>
       </div>
     </div>
-  </div>
+  </section>
 
 
   <!-- HOW IT WORKS -->
   <section class="dark-panel" id="how-it-works" aria-labelledby="how-title">
     <div class="container">
       <div class="section-title">
-        <p class="section-title__eyebrow">Simple integration</p>
-        <h2 id="how-title">Up and running in days</h2>
-        <p>We fit around your existing infrastructure — no hardware replacement required.</p>
+        <p class="section-title__eyebrow">How it works</p>
+        <h2 id="how-title">A simple process that adds value at every step</h2>
+        <p>Each stage is designed to give you something useful, starting with the very first conversation. We meet you where you are and build from there.</p>
       </div>
       <div class="steps">
         <div class="step">
           <div class="step__num">01</div>
-          <h3>Share tariff &amp; charger details</h3>
-          <p>Provide your energy tariff and charger API credentials. We support all standard protocols including OCPP.</p>
+          <h3>Free intro call</h3>
+          <p>A friendly conversation about your fleet, where you are now, and what you want to achieve. It is free, and you will come away with useful pointers either way.</p>
         </div>
         <div class="step">
           <div class="step__num">02</div>
-          <h3>We configure your optimisation</h3>
-          <p>Our team maps your fleet's operational requirements and sets up AI scheduling around your departure times, charging targets, and site constraints.</p>
+          <h3>Share your data</h3>
+          <p>Charging records, tariffs, and fleet schedules. Whatever you have to hand is enough to get started.</p>
         </div>
         <div class="step">
           <div class="step__num">03</div>
-          <h3>Go live &amp; monitor</h3>
-          <p>Charging optimisation activates automatically. Track savings, energy usage, and grid activity in real time via your Gridicity dashboard.</p>
+          <h3>Analysis</h3>
+          <p>We run the numbers with AI-assisted, data-driven analysis, testing your data against the options that matter for your operation.</p>
         </div>
         <div class="step">
           <div class="step__num">04</div>
-          <h3>Custom integrations</h3>
-          <p>Need to connect to a fleet management system or bespoke charger setup? We can accommodate non-standard integrations — just ask.</p>
+          <h3>Clear report and recommendations</h3>
+          <p>A concise report you can act on, written for the people who make the decisions. Practical steps and priorities, not a research paper, with optional follow-up support if you would like a hand putting them into practice.</p>
         </div>
       </div>
     </div>
   </section>
 
 
-  <!-- BENEFITS -->
-  <section class="section" id="benefits" aria-labelledby="benefits-title">
+  <!-- WHY GRIDICITY -->
+  <section class="section" id="why" aria-labelledby="why-title">
     <div class="container">
       <div class="section-title">
         <p class="section-title__eyebrow">Why Gridicity</p>
-        <h2 id="benefits-title">Built for fleets, trusted by operators</h2>
+        <h2 id="why-title">Straight answers, no agenda</h2>
       </div>
-      <div class="bento">
-        <div class="card card--large">
-          <div class="stat-number">40%</div>
-          <h3>Typical energy cost reduction</h3>
-          <p>By shifting charging to off-peak hours and responding dynamically to tariff changes, Gridicity customers consistently reduce energy spend by 30–40% — without any compromise to fleet operations or driver experience.</p>
+      <div class="features-grid">
+        <div class="card">
+          <div class="card__icon">🎯</div>
+          <h3>Genuinely independent</h3>
+          <p>We do not sell hardware, software, or energy contracts, and we take no supplier referral fees. Our only interest is the right answer for your fleet.</p>
         </div>
-        <div class="card card--medium card--dark">
-          <div class="card__icon" style="background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.15)">🌿</div>
-          <h3>Greener charging</h3>
-          <p>Charging more often when renewable generation is high reduces the carbon intensity of your fleet — a meaningful contribution to net-zero targets.</p>
+        <div class="card">
+          <div class="card__icon">📈</div>
+          <h3>Data-driven and AI-assisted</h3>
+          <p>We work from your actual charging data, tariffs, and schedules, using AI-assisted analysis to reach specific findings quickly.</p>
         </div>
-        <div class="card card--wide">
-          <div class="card__icon">💸</div>
-          <h3>New revenue streams</h3>
-          <p>Participate in demand flexibility and frequency response markets. Gridicity automates your grid services participation, turning your charger network into an asset that earns revenue rather than just consuming energy.</p>
+        <div class="card">
+          <div class="card__icon">🛠️</div>
+          <h3>Practical recommendations</h3>
+          <p>Clear steps you can implement yourself, structured for procurement teams, finance, and boards. Nothing that just sits on a shelf.</p>
         </div>
-        <div class="card card--wide">
-          <div class="card__icon">🛡️</div>
-          <h3>Capacity protection</h3>
-          <p>Avoid peak demand charges and connection upgrade costs. Smart load balancing keeps you within your contracted capacity limit even as your fleet grows.</p>
-        </div>
-        <div class="card card--medium">
-          <div class="card__icon">📊</div>
-          <h3>Live dashboard</h3>
-          <p>Full visibility into charging sessions, costs, savings, and grid activity in one place.</p>
-        </div>
-        <div class="card card--large card--dark">
-          <div class="card__icon" style="background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.15)">⚙️</div>
-          <h3>Zero disruption to drivers</h3>
-          <p>Optimisation happens behind the scenes. Drivers plug in as normal — vehicles are always ready when needed. Fleet operators set the rules; Gridicity handles the rest.</p>
+        <div class="card">
+          <div class="card__icon">🔓</div>
+          <h3>No software, no lock-in</h3>
+          <p>There is nothing to install and nothing to integrate. You keep full ownership of your data, your infrastructure, and your decisions.</p>
         </div>
       </div>
     </div>
   </section>
 
 
-  <!-- STAKEHOLDERS -->
-  <section class="section stakeholders" id="stakeholders" aria-labelledby="stakeholders-title">
-    <div class="container">
-      <div class="section-title">
-        <p class="section-title__eyebrow">Who benefits</p>
-        <h2 id="stakeholders-title">Value for everyone in the chain</h2>
+  <!-- ABOUT -->
+  <div class="dashboard-section" id="about">
+    <div class="dashboard-section__inner">
+      <div class="dashboard-section__img">
+        <img src="presenting.jpg" alt="Alicia Blatiak, founder of Gridicity, presenting on fleet electrification" />
       </div>
-      <div class="stakeholder-grid">
-        <div class="card">
-          <div class="card__icon">🚐</div>
-          <h3>Fleet Operators</h3>
-          <p>Dramatically lower energy bills, avoid demand charges, and access grid revenue — all with a single integration and a real-time dashboard to prove the ROI.</p>
-          <div class="tag-list">
-            <span class="tag">Lower energy bills</span>
-            <span class="tag">Demand charge avoidance</span>
-            <span class="tag">Grid revenue</span>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card__icon">🧑‍✈️</div>
-          <h3>Drivers</h3>
-          <p>Vehicles are always ready on time. Gridicity's scheduling works around operational requirements — drivers never notice a thing, except a fully charged vehicle waiting for them.</p>
-          <div class="tag-list">
-            <span class="tag">Always ready on time</span>
-            <span class="tag">No behaviour change</span>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card__icon">⚡</div>
-          <h3>The Grid &amp; Environment</h3>
-          <p>Flexible EV charging absorbs excess renewable generation and reduces stress during peak demand — improving grid stability and accelerating the energy transition.</p>
-          <div class="tag-list">
-            <span class="tag">Supports renewables</span>
-            <span class="tag">Reduces peak demand</span>
-            <span class="tag">Lower emissions</span>
-          </div>
-        </div>
+      <div>
+        <p class="dashboard-section__eyebrow">About</p>
+        <h2>Meet the founder</h2>
+        <p>Gridicity is run by me, Alicia Blatiak. I founded it to give fleets independent, data-driven advice on going electric, free of any vendor agenda.</p>
+        <p>I hold a PhD in Vehicle-to-Grid (V2G) technology from Imperial College London and an MPhil from the University of Cambridge, and I have worked on transportation and energy systems at DNV GL and the International Renewable Energy Agency. That research background sits behind every recommendation: rigorous analysis, clear evidence, and practical answers you can act on.</p>
       </div>
     </div>
-  </section>
+  </div>
 
 
   <!-- CTA -->
@@ -637,9 +659,9 @@
     <div class="container">
       <div class="cta-inner">
         <div class="cta-inner__text">
-          <h2 id="cta-title">Ready to cut your charging costs?</h2>
-          <p>Book a free consultation and we'll show you how much you could save based on your fleet size and existing tariff.</p>
-          <a href="mailto:hello@gridicity.co.uk" class="btn--cta-white" style="align-self:flex-start;">Get a free consultation →</a>
+          <h2 id="cta-title">Book a free consultation</h2>
+          <p>Tell us where you are in the transition and we will give you honest, practical advice on whether we can help and what that would look like. Expect straight answers and useful pointers from the very first conversation.</p>
+          <a href="mailto:hello@gridicity.co.uk" class="btn--cta-white" style="align-self:flex-start;">Book a free consultation →</a>
         </div>
         <div class="cta-inner__photo">
           <img src="images/solar-ev.jpg" alt="Electric vehicle charging with solar panels and renewable energy" />
@@ -654,35 +676,35 @@
     <div class="footer__inner">
       <div>
         <div class="footer__brand-name">Gridicity</div>
-        <div class="footer__brand-product">EV Charging AI</div>
-        <p class="footer__tagline">AI-powered EV charging optimisation for fleets and charge point operators. Reduce costs, prevent grid overload, and unlock new revenue.</p>
+        <div class="footer__brand-product">Fleet Electrification Advisory</div>
+        <p class="footer__tagline">Independent, data-driven advice on fleet electrification and EV charging. We do not sell hardware, software, or energy contracts, so the advice is unbiased.</p>
       </div>
       <div class="footer__col">
-        <h4>Product</h4>
+        <h4>Services</h4>
         <ul>
-          <li><a href="#features">Features</a></li>
-          <li><a href="#how-it-works">How it works</a></li>
-          <li><a href="#benefits">Benefits</a></li>
+          <li><a href="#services">Electrification planning</a></li>
+          <li><a href="#services">Infrastructure and charging strategy</a></li>
+          <li><a href="#services">Charging analysis and optimisation</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Tools</h4>
+        <ul>
+          <li><a href="https://xyy2secu.projects.saasbrella.co/" target="_blank" rel="noopener">TCO Calculator</a></li>
+          <li><a href="https://fuelorfuture.co.uk" target="_blank" rel="noopener">Fleet Converter</a></li>
         </ul>
       </div>
       <div class="footer__col">
         <h4>Company</h4>
         <ul>
-          <li><a href="#">About us</a></li>
-          <li><a href="#">Insights</a></li>
+          <li><a href="#why">Why Gridicity</a></li>
+          <li><a href="#about">About</a></li>
           <li><a href="#contact">Contact</a></li>
-        </ul>
-      </div>
-      <div class="footer__col">
-        <h4>Legal</h4>
-        <ul>
-          <li><a href="#">Privacy policy</a></li>
-          <li><a href="#">Terms of service</a></li>
         </ul>
       </div>
     </div>
     <div class="footer__bottom">
-      <span>© 2024 Gridicity Ltd · Company No. 14250321 (England &amp; Wales)</span>
+      <span>© 2026 Gridicity Ltd · Company No. 14250321 (England &amp; Wales)</span>
       <span>hello@gridicity.co.uk</span>
     </div>
   </footer>
