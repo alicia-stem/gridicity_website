@@ -2,7 +2,7 @@
 
 Static HTML/CSS website for [gridicity.co.uk](https://gridicity.co.uk).
 
-**Live (GitHub Pages):** https://alicia-stem.github.io/gridicity_website/
+**Deployed via:** Cloudflare Pages (connected to this repo; pushes to `main` auto-deploy).
 
 ## What this site is
 
@@ -15,7 +15,7 @@ page positions the business as a small, independent consultancy, not a SaaS prod
 
 | Branch | Status | Purpose |
 |---|---|---|
-| `main` | **Live** | Current site. Independent fleet electrification advisory. This is what GitHub Pages serves. |
+| `main` | **Live** | Current site. Independent fleet electrification advisory. This is what Cloudflare Pages deploys. |
 | `just_consulting` | Superseded | Earlier consulting-only draft (six services, TCO mockup, etc.). Kept for reference; **not** deployed. `main` replaces it. |
 
 > The consulting rewrite lives on **`main`**. Earlier in development an advisory
@@ -44,17 +44,18 @@ python3 -m http.server 3456
 
 ## Deployment
 
-GitHub Pages serves the **root** of the **`main`** branch (repo is public). Any push
-to `main` auto-deploys within a minute or two; no manual step is needed.
+Deployed with **Cloudflare Pages**, connected to this GitHub repo. It is a plain
+static site, so the Cloudflare Pages project settings are:
 
-To change or re-point the Pages source:
+- **Framework preset:** None
+- **Build command:** *(none)*
+- **Build output directory:** `/` (repo root)
 
-```bash
-gh api --method PUT repos/alicia-stem/gridicity_website/pages \
-  -f 'source[branch]=main' -f 'source[path]=/'
-# a source switch may not auto-trigger a build; force one with:
-gh api --method POST repos/alicia-stem/gridicity_website/pages/builds
-```
+Any push to `main` triggers an automatic Cloudflare deploy; Cloudflare serves the
+files as-is with no build step. GitHub Pages is no longer used.
+
+The `.nojekyll` file is a leftover from the previous GitHub Pages setup. It has no
+effect on Cloudflare and can be removed if desired.
 
 ## Images
 
