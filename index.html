@@ -403,6 +403,28 @@
       .cta-inner__photo { min-height: 200px; }
     }
 
+    /* ─── Contact form ─── */
+    .contact-form-wrap { background: var(--surface); padding: 2.5rem; display: flex; align-items: center; }
+    .contact-form { width: 100%; display: flex; flex-direction: column; gap: 0.875rem; }
+    .contact-form label {
+      display: flex; flex-direction: column; gap: 0.375rem;
+      font-size: 0.8125rem; font-weight: 600; color: var(--fg);
+    }
+    .contact-form__opt { font-weight: 400; color: var(--fg-55); }
+    .contact-form input, .contact-form textarea {
+      font-family: 'DM Sans', sans-serif; font-size: 0.9375rem; font-weight: 400; color: var(--fg);
+      background: var(--bg); border: 1px solid var(--border-10); border-radius: 10px;
+      padding: 0.7rem 0.875rem; width: 100%;
+    }
+    .contact-form input::placeholder, .contact-form textarea::placeholder { color: var(--fg-30); }
+    .contact-form input:focus, .contact-form textarea:focus {
+      outline: none; border-color: var(--green); box-shadow: 0 0 0 3px rgba(17,108,74,0.12);
+    }
+    .contact-form textarea { resize: vertical; min-height: 96px; }
+    .contact-form button { margin-top: 0.25rem; align-self: flex-start; }
+    .contact-form__status { font-size: 0.8125rem; color: var(--fg-55); min-height: 1rem; margin: 0; }
+    @media (max-width: 680px) { .contact-form-wrap { padding: 1.75rem 1.5rem; } }
+
     /* ─── Footer ─── */
     .footer { background: var(--dark); color: rgba(255,255,255,0.6); padding: 3rem 2rem 2rem; }
     .footer__inner {
@@ -500,7 +522,7 @@
           From planning your infrastructure to optimising what you already run, we turn your fleet and charging data into clear, practical recommendations you can act on. We work as your independent adviser, focused entirely on what is best for your fleet.
         </p>
         <div class="hero__actions">
-          <a href="mailto:hello@gridicity.co.uk" class="btn btn--dark btn--lg">Book a free consultation</a>
+          <a href="#contact" class="btn btn--dark btn--lg">Book a free consultation</a>
           <a href="#services" class="btn btn--outline btn--lg">Our services →</a>
         </div>
       </div>
@@ -659,12 +681,30 @@
     <div class="container">
       <div class="cta-inner">
         <div class="cta-inner__text">
-          <h2 id="cta-title">Book a free consultation</h2>
-          <p>Tell us where you are in the transition and we will give you honest, practical advice on whether we can help and what that would look like. Expect straight answers and useful pointers from the very first conversation.</p>
-          <a href="mailto:hello@gridicity.co.uk" class="btn--cta-white" style="align-self:flex-start;">Book a free consultation →</a>
+          <h2 id="cta-title">Book a free consultation or send a query</h2>
+          <p>Tell us where you are in the transition and we will give you honest, practical advice on whether we can help and what that would look like.</p>
         </div>
-        <div class="cta-inner__photo">
-          <img src="images/solar-ev.jpg" alt="Electric vehicle charging with solar panels and renewable energy" />
+        <div class="contact-form-wrap">
+          <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+            <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY" />
+            <input type="hidden" name="subject" value="New enquiry from the Gridicity website" />
+            <input type="hidden" name="from_name" value="Gridicity website" />
+            <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true" />
+            <label>Name
+              <input type="text" name="name" required placeholder="Your name" />
+            </label>
+            <label>Company
+              <input type="text" name="company" required placeholder="Your organisation" />
+            </label>
+            <label>Email
+              <input type="email" name="email" required placeholder="you@company.co.uk" />
+            </label>
+            <label>Message <span class="contact-form__opt">(optional)</span>
+              <textarea name="message" rows="4" placeholder="Tell us a little about your fleet or your question"></textarea>
+            </label>
+            <button type="submit" class="btn btn--green">Send message</button>
+            <p class="contact-form__status" id="form-status" role="status" aria-live="polite"></p>
+          </form>
         </div>
       </div>
     </div>
@@ -705,7 +745,7 @@
     </div>
     <div class="footer__bottom">
       <span>© 2026 Gridicity Ltd · Company No. 14250321 (England &amp; Wales)</span>
-      <span>hello@gridicity.co.uk</span>
+      <a href="#contact">Get in touch</a>
     </div>
   </footer>
 
@@ -732,6 +772,37 @@
       });
     }, { threshold: 0.35 });
     sections.forEach(s => io.observe(s));
+
+    // Contact form — submit to Web3Forms via AJAX, show inline status
+    const contactForm = document.querySelector('.contact-form');
+    if (contactForm) {
+      const status = document.getElementById('form-status');
+      contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = contactForm.querySelector('button[type="submit"]');
+        status.style.color = '';
+        status.textContent = 'Sending…';
+        if (btn) btn.disabled = true;
+        try {
+          const res = await fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: { 'Accept': 'application/json' },
+            body: new FormData(contactForm)
+          });
+          const json = await res.json();
+          if (json.success) {
+            contactForm.reset();
+            status.textContent = 'Thanks, your message has been sent. We will be in touch shortly.';
+          } else {
+            status.textContent = json.message || 'Sorry, something went wrong. Please try again.';
+          }
+        } catch (err) {
+          status.textContent = 'Sorry, something went wrong. Please try again.';
+        } finally {
+          if (btn) btn.disabled = false;
+        }
+      });
+    }
   </script>
 
 </body>
